@@ -466,7 +466,8 @@ button {
       width: 100%;
       height: 100%;
       box-shadow: $mfp-shadow;
-      background: $mfp-iframe-background;
+      background: #fff;
+      // background: $mfp-iframe-background;
     }
   }
 }
