@@ -266,7 +266,8 @@ button {
     background: rgba(0, 0, 0, .5);
     cursor: pointer;
     position: absolute;
-    top: 50%;
+//    top: 50%;
+    top: calc(50vh + 54px);
     transform: translateY(-50%);
 //    overflow: visible;
 //    cursor: pointer;

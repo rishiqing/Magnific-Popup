@@ -164,7 +164,7 @@ button.mfp-arrow {
   background: rgba(0, 0, 0, 0.5);
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: calc(50vh + 54px);
   transform: translateY(-50%); }
 
 button::-moz-focus-inner {
