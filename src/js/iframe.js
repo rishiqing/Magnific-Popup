@@ -23,7 +23,11 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 
 	options: {
 		markup: '<div class="mfp-iframe-scaler">'+
-					'<div class="mfp-close"></div>'+
+            '<div class="mfp-header-wrapper">' +
+              '<div class="mfp-file-name"></div>'+
+              '<a class="mfp-download"><i class="icon-download"></i>下载</a>'+
+              '<div class="mfp-close"></div>'+
+            '</div>' +
 					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
 				'</div>',
 

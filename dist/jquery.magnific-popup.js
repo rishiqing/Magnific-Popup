@@ -605,8 +605,11 @@ MagnificPopup.prototype = {
 		item.type = type || mfp.st.type || 'inline';
 		item.index = index;
 		item.parsed = true;
-    var src = src.slice(src.lastIndexOf('/') + 1), _idx = src.lastIndexOf('?');
-    src = _idx === -1 ? src : src.slice(0, _idx);
+
+    var _sliceIndex = src.lastIndexOf('?Expires');
+    src = src.slice(0, _sliceIndex === -1 ? src.length : _sliceIndex);
+
+    src = src.slice(src.lastIndexOf('/') + 1);
     src = decodeURIComponent(src);
     item.fileName = src;
 		mfp.items[index] = item;
@@ -1597,7 +1600,11 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 
 	options: {
 		markup: '<div class="mfp-iframe-scaler">'+
-					'<div class="mfp-close"></div>'+
+            '<div class="mfp-header-wrapper">' +
+              '<div class="mfp-file-name"></div>'+
+              '<a class="mfp-download"><i class="icon-download"></i>下载</a>'+
+              '<div class="mfp-close"></div>'+
+            '</div>' +
 					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
 				'</div>',
 
