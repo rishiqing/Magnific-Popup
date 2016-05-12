@@ -303,6 +303,8 @@ MagnificPopup.prototype = {
 			_document.on('keyup' + EVENT_NS, function(e) {
 				if(e.keyCode === 27) {
 					mfp.close();
+          e.stopPropagation();
+          e.preventDefault();
 				}
 			});
 		}
