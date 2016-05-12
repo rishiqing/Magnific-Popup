@@ -77,6 +77,13 @@ var _mfpOn = function(name, f) {
 		}
 		return mfp.currTemplate.closeBtn;
 	},
+  _getDownloadBtn = function(type) {
+    if(type !== _currPopupType || !mfp.currTemplate.downloadBtn) {
+      mfp.currTemplate.downloadBtn = $( mfp.st.downloadMarkUp.replace('%title%', mfp.st.downloadMarkUp ) );
+      _currPopupType = type;
+    }
+    return mfp.currTemplate.downloadBtn;
+  },
 	// Initialize Magnific Popup only when called at least once
 	_checkInstance = function() {
 		if(!$.magnificPopup.instance) {
@@ -243,7 +250,10 @@ MagnificPopup.prototype = {
 				_wrapClasses += ' mfp-close-btn-in';
 			}
 		}
-
+    if(mfp.st.showDownloadBtn) {
+      // Close button
+      mfp.wrap.append( _getDownloadBtn() );
+    }
 		if(mfp.st.alignTop) {
 			_wrapClasses += ' mfp-align-top';
 		}
@@ -463,7 +473,7 @@ MagnificPopup.prototype = {
 	 */
 	updateItemHTML: function() {
 		var item = mfp.items[mfp.index];
-
+   //  var fileName = item.slice();
 		// Detach and perform modifications
 		mfp.contentContainer.detach();
 
@@ -527,6 +537,7 @@ MagnificPopup.prototype = {
 				// if there is no markup, we just append close button element inside
 				if(!mfp.content.find('.mfp-close').length) {
 					mfp.content.append(_getCloseBtn());
+					mfp.content.append(_getDownloadBtn());
 				}
 			} else {
 				mfp.content = newContent;
@@ -573,10 +584,11 @@ MagnificPopup.prototype = {
 				item.src = item.el.attr('href');
 			}
 		}
-
+    var src = item.src;
 		item.type = type || mfp.st.type || 'inline';
 		item.index = index;
 		item.parsed = true;
+    item.fileName = src.slice(src.lastIndexOf('/') + 1);
 		mfp.items[index] = item;
 		_mfpTrigger('ElementParse', item);
 
@@ -859,6 +871,7 @@ $.magnificPopup = {
 		closeBtnInside: true,
 
 		showCloseBtn: true,
+    shwoDownloadBtn: true,
 
 		enableEscapeKey: true,
 
@@ -877,6 +890,7 @@ $.magnificPopup = {
 		overflowY: 'auto',
 
 		closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
+    downloadMarkUp: '<div class="mfp-download">下载</div>',
 
 		tClose: 'Close (Esc)',
 

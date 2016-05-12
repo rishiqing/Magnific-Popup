@@ -111,15 +111,18 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: { // for development run 'grunt watch'
-      jekyll: {
-        files: ['website/**'],
-        tasks: ['jekyll:dev', 'copy:dev']
-      },
+    //watch: { // for development run 'grunt watch'
+    //  jekyll: {
+    //    files: ['website/**'],
+    //    tasks: ['jekyll:dev', 'copy:dev']
+    //  },
+    //  files: ['src/**'],
+    //  tasks: [ 'sass', 'mfpbuild', 'copy:dev', 'uglify']
+    //},
+    watch : {
       files: ['src/**'],
-      tasks: [ 'sass', 'mfpbuild', 'copy:dev', 'uglify']
+      tasks: [ 'nosite']
     },
-
     cssmin: {
       compress: {
         files: {
@@ -205,6 +208,7 @@ module.exports = function(grunt) {
 
   // Default task.
   grunt.registerTask('default', ['sass', 'mfpbuild', 'uglify', 'copy', 'jekyll:dev']);
+  // grunt.registerTask('default', ['sass', 'mfpbuild', 'uglify', 'copy']);
 
   grunt.registerTask('production', ['sass', 'mfpbuild', 'uglify', 'copy', 'cssmin', 'jekyll:production']);
   grunt.registerTask('nosite', ['sass', 'mfpbuild', 'uglify']);

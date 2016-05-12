@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2016-02-20
+/*! Magnific Popup - v1.1.0 - 2016-05-12
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2016 Dmitry Semenov; */
 ;(function (factory) { 
@@ -94,6 +94,13 @@ var _mfpOn = function(name, f) {
 		}
 		return mfp.currTemplate.closeBtn;
 	},
+  _getDownloadBtn = function(type) {
+    if(type !== _currPopupType || !mfp.currTemplate.downloadBtn) {
+      mfp.currTemplate.downloadBtn = $( mfp.st.downloadMarkUp.replace('%title%', mfp.st.downloadMarkUp ) );
+      _currPopupType = type;
+    }
+    return mfp.currTemplate.downloadBtn;
+  },
 	// Initialize Magnific Popup only when called at least once
 	_checkInstance = function() {
 		if(!$.magnificPopup.instance) {
@@ -260,7 +267,10 @@ MagnificPopup.prototype = {
 				_wrapClasses += ' mfp-close-btn-in';
 			}
 		}
-
+    if(mfp.st.showDownloadBtn) {
+      // Close button
+      mfp.wrap.append( _getDownloadBtn() );
+    }
 		if(mfp.st.alignTop) {
 			_wrapClasses += ' mfp-align-top';
 		}
@@ -480,7 +490,7 @@ MagnificPopup.prototype = {
 	 */
 	updateItemHTML: function() {
 		var item = mfp.items[mfp.index];
-
+   //  var fileName = item.slice();
 		// Detach and perform modifications
 		mfp.contentContainer.detach();
 
@@ -544,6 +554,7 @@ MagnificPopup.prototype = {
 				// if there is no markup, we just append close button element inside
 				if(!mfp.content.find('.mfp-close').length) {
 					mfp.content.append(_getCloseBtn());
+					mfp.content.append(_getDownloadBtn());
 				}
 			} else {
 				mfp.content = newContent;
@@ -590,10 +601,11 @@ MagnificPopup.prototype = {
 				item.src = item.el.attr('href');
 			}
 		}
-
+    var src = item.src;
 		item.type = type || mfp.st.type || 'inline';
 		item.index = index;
 		item.parsed = true;
+    item.fileName = src.slice(src.lastIndexOf('/') + 1);
 		mfp.items[index] = item;
 		_mfpTrigger('ElementParse', item);
 
@@ -876,6 +888,7 @@ $.magnificPopup = {
 		closeBtnInside: true,
 
 		showCloseBtn: true,
+    shwoDownloadBtn: true,
 
 		enableEscapeKey: true,
 
@@ -894,6 +907,7 @@ $.magnificPopup = {
 		overflowY: 'auto',
 
 		closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
+    downloadMarkUp: '<div class="mfp-download">下载</div>',
 
 		tClose: 'Close (Esc)',
 
@@ -1130,7 +1144,12 @@ $.magnificPopup.registerModule('image', {
 
 	options: {
 		markup: '<div class="mfp-figure">'+
-					'<div class="mfp-close"></div>'+
+          '<div class="mfp-header-wrapper">' +
+               '<div class="mfp-file-name"></div>'+
+               '<a class="mfp-download"><i class="icon-download"></i>下载</a>'+
+               '<div class="mfp-close"></div>'+
+           '</div>' +
+
 					'<figure>'+
 						'<div class="mfp-img"></div>'+
 						'<figcaption>'+
@@ -1297,6 +1316,8 @@ $.magnificPopup.registerModule('image', {
 
 
 			var el = template.find('.mfp-img');
+			var $fileName = template.find('.mfp-file-name');
+			var $download = template.find('.mfp-download');
 			if(el.length) {
 				var img = document.createElement('img');
 				img.className = 'mfp-img';
@@ -1305,6 +1326,9 @@ $.magnificPopup.registerModule('image', {
 				}
 				item.img = $(img).on('load.mfploader', onLoadComplete).on('error.mfploader', onLoadError);
 				img.src = item.src;
+        $download.attr('href', item.src);
+        $fileName.text(item.fileName);
+        // download.href = item.src;
 
 				// without clone() "error" event is not firing when IMG is replaced by new IMG
 				// TODO: find a way to avoid such cloning

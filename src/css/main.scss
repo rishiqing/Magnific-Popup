@@ -103,7 +103,44 @@
     cursor: auto;
   }
 }
-
+.mfp-header-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 54px;
+  text-align: center;
+  cursor: default;
+  background:rgba(0,0,0,0.86);
+  .mfp-file-name {
+    font-size: 18px;
+    line-height: 54px;
+    color: #fff;
+    margin-left: 30px;
+    float: left;
+    // cursor: default;
+  }
+  .mfp-download {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    line-height: 54px;
+  }
+  .mfp-close {
+    float: right;
+    margin-right: 18px;
+    width: 22px!important;
+    height: 22px;
+    line-height: 22px;
+    color: #000!important;
+    margin-top: 15px;
+    padding-left: 5px;
+    font-size: 20px;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: all ease-out .2s;
+  }
+}
 // Cursors
 .mfp-ajax-cur {
   cursor: progress;
@@ -202,8 +239,7 @@
 
 // CSS-reset for buttons
 button {
-  &.mfp-close,
-  &.mfp-arrow {
+  &.mfp-close {
     overflow: visible;
     cursor: pointer;
     background: transparent;
@@ -215,6 +251,24 @@ button {
     z-index: $mfp-z-index-base + 6;
     box-shadow: none;
     touch-action: manipulation;
+  }
+  &.mfp-arrow {
+    background: rgba(0, 0, 0, .5);
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+//    overflow: visible;
+//    cursor: pointer;
+//    background: transparent;
+//    border: 0;
+//    -webkit-appearance: none;
+//    display: block;
+//    outline: none;
+//    padding: 0;
+//    z-index: $mfp-z-index-base + 6;
+//    box-shadow: none;
+//    touch-action: manipulation;
   }
   &::-moz-focus-inner {
       padding: 0;
@@ -287,8 +341,12 @@ button {
     top: 50%;
     margin-top: -55px;
     padding: 0;
-    width: 90px;
-    height: 110px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    transition: all ease-out .2s;
+    // width: 90px;
+    // height: 110px;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
     &:active {
       margin-top: -54px;
@@ -304,48 +362,50 @@ button {
       width: 0;
       height: 0;
       position: absolute;
-      left: 0;
+      // left: 0;
       top: 0;
-      margin-top: 35px;
-      margin-left: 35px;
+      // margin-top: 35px;
+      // margin-left: 35px;
       border: medium inset transparent;
     }
 
     &:after {
 
-      border-top-width: 13px;
-      border-bottom-width: 13px;
-      top:8px;
+      border-top-width: 10px;
+      border-bottom-width: 10px;
+      top:7px;
     }
 
     &:before {
-      border-top-width: 21px;
-      border-bottom-width: 21px;
-      opacity: 0.7;
+//      border-top-width: 21px;
+//      border-bottom-width: 21px;
+//      opacity: 0.7;
     }
 
   }
 
   .mfp-arrow-left {
-    left: 0;
+    left: 40px;
     &:after {
-      border-right: 17px solid $mfp-controls-color;
-      margin-left: 31px;
+      border-right: 16px solid $mfp-controls-color;
+      left: 6px;
+      // margin-left: 31px;
     }
     &:before {
-      margin-left: 25px;
-      border-right: 27px solid $mfp-controls-border-color;
+      // margin-left: 25px;
+      // border-right: 27px solid $mfp-controls-border-color;
     }
   }
 
   .mfp-arrow-right {
-    right: 0;
+    right: 40px;
     &:after {
-      border-left: 17px solid $mfp-controls-color;
-      margin-left: 39px
+      border-left: 16px solid $mfp-controls-color;
+      // margin-left: 39px;
+      right: 6px;
     }
     &:before {
-      border-left: 27px solid $mfp-controls-border-color;
+      // border-left: 27px solid $mfp-controls-border-color;
     }
   }
 }

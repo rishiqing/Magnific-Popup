@@ -19,7 +19,12 @@ $.magnificPopup.registerModule('image', {
 
 	options: {
 		markup: '<div class="mfp-figure">'+
-					'<div class="mfp-close"></div>'+
+          '<div class="mfp-header-wrapper">' +
+               '<div class="mfp-file-name"></div>'+
+               '<a class="mfp-download"><i class="icon-download"></i>下载</a>'+
+               '<div class="mfp-close"></div>'+
+           '</div>' +
+
 					'<figure>'+
 						'<div class="mfp-img"></div>'+
 						'<figcaption>'+
@@ -186,6 +191,8 @@ $.magnificPopup.registerModule('image', {
 
 
 			var el = template.find('.mfp-img');
+			var $fileName = template.find('.mfp-file-name');
+			var $download = template.find('.mfp-download');
 			if(el.length) {
 				var img = document.createElement('img');
 				img.className = 'mfp-img';
@@ -194,6 +201,9 @@ $.magnificPopup.registerModule('image', {
 				}
 				item.img = $(img).on('load.mfploader', onLoadComplete).on('error.mfploader', onLoadError);
 				img.src = item.src;
+        $download.attr('href', item.src);
+        $fileName.text(item.fileName);
+        // download.href = item.src;
 
 				// without clone() "error" event is not firing when IMG is replaced by new IMG
 				// TODO: find a way to avoid such cloning
