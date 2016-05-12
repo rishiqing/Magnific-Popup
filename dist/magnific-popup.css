@@ -7,7 +7,7 @@
   z-index: 1042;
   overflow: hidden;
   position: fixed;
-  background: rgba(0, 0, 0, 0.74);
+  background: rgba(0, 0, 0, 0.9);
   opacity: 0.8; }
 
 .mfp-wrap {
@@ -341,9 +341,6 @@ img.mfp-img {
 
 .mfp-image-holder .mfp-content {
   max-width: 100%; }
-
-.mfp-gallery .mfp-image-holder .mfp-figure {
-  cursor: pointer; }
 
 @media screen and (max-width: 800px) and (orientation: landscape), screen and (max-height: 300px) {
   /**

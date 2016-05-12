@@ -41,7 +41,7 @@
   position: fixed;
 
   // background: $mfp-overlay-color;
-  background: rgba(0, 0, 0, .74);
+  background: rgba(0, 0, 0, .90);
   opacity: $mfp-overlay-opacity;
 }
 
@@ -555,7 +555,7 @@ button {
   .mfp-gallery {
     .mfp-image-holder {
       .mfp-figure {
-        cursor: pointer;
+        // cursor: pointer;
       }
     }
   }

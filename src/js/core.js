@@ -377,8 +377,9 @@ MagnificPopup.prototype = {
 	/**
 	 * Closes the popup
 	 */
-	close: function() {
+	close: function(e) {
 		if(!mfp.isOpen) return;
+
 		_mfpTrigger(BEFORE_CLOSE_EVENT);
 
 		mfp.isOpen = false;
@@ -872,7 +873,7 @@ $.magnificPopup = {
 
 		closeOnContentClick: false,
 
-		closeOnBgClick: true,
+		closeOnBgClick: false,
 
 		closeBtnInside: true,
 
