@@ -103,7 +103,7 @@
   position: relative; }
   .mfp-figure figure {
     position: fixed;
-    top: 32px;
+    top: 46px;
     bottom: 18px;
     left: 116px;
     right: 116px; }
@@ -290,14 +290,15 @@ button::-moz-focus-inner {
 
 /* Main image in popup */
 img.mfp-img {
+  position: absolute;
   height: auto;
   width: auto;
-  max-height: 100% !important;
-  display: block;
-  line-height: 0;
   box-sizing: border-box;
-  padding: 40px 0 40px;
-  margin: 0 auto; }
+  border: 0;
+  max-height: calc(100% - 50px) !important;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%; }
 
 /* The shadow behind the image */
 .mfp-figure {
