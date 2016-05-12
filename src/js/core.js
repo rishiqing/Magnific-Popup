@@ -588,7 +588,10 @@ MagnificPopup.prototype = {
 		item.type = type || mfp.st.type || 'inline';
 		item.index = index;
 		item.parsed = true;
-    item.fileName = src.slice(src.lastIndexOf('/') + 1);
+    var src = src.slice(src.lastIndexOf('/') + 1), _idx = src.lastIndexOf('?');
+    src = _idx === -1 ? src : src.slice(0, _idx);
+    src = decodeURIComponent(src);
+    item.fileName = src;
 		mfp.items[index] = item;
 		_mfpTrigger('ElementParse', item);
 
