@@ -7,7 +7,7 @@
   z-index: 1042;
   overflow: hidden;
   position: fixed;
-  background: #0b0b0b;
+  background: rgba(0, 0, 0, 0.74);
   opacity: 0.8; }
 
 .mfp-wrap {
@@ -98,6 +98,15 @@
     transition: all ease-out .2s; }
     .mfp-header-wrapper .mfp-close svg {
       cursor: pointer; }
+
+.mfp-figure {
+  position: relative; }
+  .mfp-figure figure {
+    position: fixed;
+    top: 32px;
+    bottom: 18px;
+    left: 116px;
+    right: 116px; }
 
 .mfp-ajax-cur {
   cursor: progress; }
@@ -281,9 +290,9 @@ button::-moz-focus-inner {
 
 /* Main image in popup */
 img.mfp-img {
-  width: auto;
-  max-width: 100%;
   height: auto;
+  width: auto;
+  max-height: 100% !important;
   display: block;
   line-height: 0;
   box-sizing: border-box;
