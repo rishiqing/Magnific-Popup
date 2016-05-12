@@ -1152,7 +1152,7 @@ $.magnificPopup.registerModule('image', {
 		markup: '<div class="mfp-figure">'+
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
-               '<a class="mfp-download"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;display: block;width: 24px;height: 18px;color: #fff;/* background: #9e4545; */position: absolute;left: -40px;top: 19px;transform: scale(1.5);"><g><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></g></svg>下载</a>'+
+               '<a class="mfp-download" target = "_blank" download=""><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;display: block;width: 24px;height: 18px;color: #fff;/* background: #9e4545; */position: absolute;left: -40px;top: 19px;transform: scale(1.5);"><g><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></g></svg>下载</a>'+
                '<div class="mfp-close"></div>'+
            '</div>' +
 
@@ -1602,7 +1602,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 		markup: '<div class="mfp-iframe-scaler">'+
             '<div class="mfp-header-wrapper">' +
               '<div class="mfp-file-name"></div>'+
-              '<a class="mfp-download"><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;display: block;width: 24px;height: 18px;color: #fff;/* background: #9e4545; */position: absolute;left: -40px;top: 19px;transform: scale(1.5);"><g><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></g></svg>下载</a>'+
+              '<a class="mfp-download" target="_blank" download=""><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;display: block;width: 24px;height: 18px;color: #fff;/* background: #9e4545; */position: absolute;left: -40px;top: 19px;transform: scale(1.5);"><g><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></g></svg>下载</a>'+
               '<div class="mfp-close"></div>'+
             '</div>' +
 					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
