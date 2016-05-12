@@ -118,10 +118,17 @@
     color: #fff;
     margin-left: 30px;
     float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 40%;
     // cursor: default;
   }
   .mfp-download {
-    display: inline-block;
+    position: absolute;
+    left: 50%;
+    fill: currentColor;
+    transform: translateX(-50%);
     color: #fff;
     text-decoration: none;
     line-height: 54px;
@@ -139,6 +146,9 @@
     background-color: #fff;
     border-radius: 50%;
     transition: all ease-out .2s;
+    svg {
+      cursor: pointer;
+    }
   }
 }
 // Cursors
@@ -423,7 +433,7 @@ button {
       max-width: $mfp-iframe-max-width;
     }
     .mfp-close {
-      top: -40px;
+      // top: -40px;
     }
   }
   .mfp-iframe-scaler {

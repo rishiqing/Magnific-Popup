@@ -18,6 +18,7 @@
     <a class="test-popup-link" href="./image/3.jpg">Open popup</a>
     <a class="test-popup-link" href="./image/4.jpg">Open popup</a>
 </div>
+<a class="pdf" href="./image/pdf.pdf">pdf预览</a>
 
 
 <script>
@@ -34,7 +35,9 @@
         }
         // other options
     });
-
+    $('.pdf').magnificPopup({
+        type: 'iframe'
+    });
 </script>
 </body>
 </html>
