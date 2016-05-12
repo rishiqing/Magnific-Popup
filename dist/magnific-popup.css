@@ -79,6 +79,10 @@
     color: #fff;
     text-decoration: none;
     line-height: 54px; }
+    .mfp-header-wrapper .mfp-download .icon-get_app {
+      font-size: 24px;
+      vertical-align: -23%;
+      margin-right: 20px; }
   .mfp-header-wrapper .mfp-close {
     float: right;
     margin-right: 18px;
