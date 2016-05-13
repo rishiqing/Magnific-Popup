@@ -34,7 +34,8 @@ var mfp, // As we have only one instance of MagnificPopup object, we define it l
 	_document,
 	_prevContentType,
 	_wrapClasses,
-	_currPopupType;
+	_currPopupType,
+  _prevStop;
 
 
 /**
@@ -250,10 +251,7 @@ MagnificPopup.prototype = {
 				_wrapClasses += ' mfp-close-btn-in';
 			}
 		}
-    if(mfp.st.showDownloadBtn) {
-      // Close button
-      mfp.wrap.append( _getDownloadBtn() );
-    }
+
 		if(mfp.st.alignTop) {
 			_wrapClasses += ' mfp-align-top';
 		}
@@ -283,13 +281,24 @@ MagnificPopup.prototype = {
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
-			_document.on('keydown' + EVENT_NS, function(e) {
-				if(e.keyCode === 27) {
-					mfp.close();
+      function _closeDialog (e) {
+        if(e.keyCode === 27) {
+          this.removeEventListener('keydown', _closeDialog);
+          mfp.close();
           e.stopPropagation();
           e.preventDefault();
-				}
-			});
+        }
+      }
+      // 采用事件捕获来捕获此事件防止触发document上绑定的相应事件
+      window.addEventListener('keydown', _closeDialog, true);
+			//_window.on('keydown' + EVENT_NS, function(e) {
+			//	if(e.keyCode === 27) {
+       //   _window.off('keydown' + EVENT_NS);
+			//		mfp.close();
+       //   e.stopPropagation();
+       //   e.preventDefault();
+			//	}
+			//});
 		}
 
 		_window.on('resize' + EVENT_NS, function() {
