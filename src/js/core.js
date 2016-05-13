@@ -283,7 +283,7 @@ MagnificPopup.prototype = {
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
-			_document.on('keyup' + EVENT_NS, function(e) {
+			_document.on('keydown' + EVENT_NS, function(e) {
 				if(e.keyCode === 27) {
 					mfp.close();
           e.stopPropagation();

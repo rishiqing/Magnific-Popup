@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2016-05-12
+/*! Magnific Popup - v1.1.0 - 2016-05-13
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2016 Dmitry Semenov; */
 ;(function (factory) { 
@@ -300,7 +300,7 @@ MagnificPopup.prototype = {
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
-			_document.on('keyup' + EVENT_NS, function(e) {
+			_document.on('keydown' + EVENT_NS, function(e) {
 				if(e.keyCode === 27) {
 					mfp.close();
           e.stopPropagation();
