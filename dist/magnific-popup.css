@@ -27,6 +27,7 @@
   height: 100%;
   left: 0;
   top: 0;
+  cursor: default;
   padding: 0 8px;
   box-sizing: border-box; }
 
