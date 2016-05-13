@@ -127,8 +127,17 @@ var _mfpOn = function(name, f) {
 		}
 				
 		return false;
-	};
-
+	},
+  _closeDialog = function (e) {
+    if(e && e.keyCode === 27) {
+      window.removeEventListener('keydown', _closeDialog, true);
+      mfp.close();
+      e.stopPropagation();
+      e.preventDefault();
+    } else if (!e) {
+      window.removeEventListener('keydown', _closeDialog, true);
+    }
+  };
 
 
 /**
@@ -298,14 +307,7 @@ MagnificPopup.prototype = {
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
-      function _closeDialog (e) {
-        if(e.keyCode === 27) {
-          this.removeEventListener('keydown', _closeDialog);
-          mfp.close();
-          e.stopPropagation();
-          e.preventDefault();
-        }
-      }
+
       // 采用事件捕获来捕获此事件防止触发document上绑定的相应事件
       window.addEventListener('keydown', _closeDialog, true);
 			//_window.on('keydown' + EVENT_NS, function(e) {
@@ -473,7 +475,7 @@ MagnificPopup.prototype = {
 		mfp.content = null;
 		mfp.currTemplate = null;
 		mfp.prevHeight = 0;
-
+    window.removeEventListener('keydown', _closeDialog);
 		_mfpTrigger(AFTER_CLOSE_EVENT);
 	},
 	
