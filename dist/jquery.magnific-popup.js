@@ -1,6 +1,6 @@
-/*! Magnific Popup - v1.1.0 - 2016-05-13
+/*! Magnific Popup - v1.1.0 - 2017-04-27
 * http://dimsemenov.com/plugins/magnific-popup/
-* Copyright (c) 2016 Dmitry Semenov; */
+* Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
 if (typeof define === 'function' && define.amd) { 
  // AMD. Register as an anonymous module. 
@@ -615,17 +615,20 @@ MagnificPopup.prototype = {
 				item.src = item.el.attr('href');
 			}
 		}
-    var src = item.src;
-		item.type = type || mfp.st.type || 'inline';
-		item.index = index;
-		item.parsed = true;
+	    var src = item.src;
+			item.type = type || mfp.st.type || 'inline';
+			item.index = index;
+			item.parsed = true;
+		if (/^http[s]*:\/\//.test(src)) { // 如果src是一个链接
+			var _sliceIndex = src.lastIndexOf('?Expires');
+		    var fileName = src.slice(0, _sliceIndex === -1 ? src.length : _sliceIndex);
 
-    var _sliceIndex = src.lastIndexOf('?Expires');
-    src = src.slice(0, _sliceIndex === -1 ? src.length : _sliceIndex);
+		    fileName = fileName.slice(fileName.lastIndexOf('/') + 1);
+		    fileName = decodeURIComponent(fileName);
+		    item.fileName = item.fileName || fileName;
+		    item.downloadUrl = src;
+		}
 
-    src = src.slice(src.lastIndexOf('/') + 1);
-    src = decodeURIComponent(src);
-    item.fileName = src;
 		mfp.items[index] = item;
 		_mfpTrigger('ElementParse', item);
 
@@ -908,7 +911,7 @@ $.magnificPopup = {
 		closeBtnInside: true,
 
 		showCloseBtn: true,
-    shwoDownloadBtn: true,
+    	shwoDownloadBtn: true,
 
 		enableEscapeKey: true,
 
@@ -927,7 +930,7 @@ $.magnificPopup = {
 		overflowY: 'auto',
 
 		closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
-    downloadMarkUp: '<div class="mfp-download">下载</div>',
+    	downloadMarkUp: '<div class="mfp-download">下载</div>',
 
 		tClose: 'Close (Esc)',
 
@@ -1007,7 +1010,14 @@ var INLINE_NS = 'inline',
 $.magnificPopup.registerModule(INLINE_NS, {
 	options: {
 		hiddenClass: 'hide', // will be appended with `mfp-` prefix
-		markup: '',
+		markup: '<div class="mfp-inline-wrapper">'+
+					'<div class="mfp-header-wrapper">' +
+						'<div class="mfp-file-name"></div>'+
+						'<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+						'<div class="mfp-close"></div>'+
+					'</div>'+
+					'<div class="mfp-inline"></div>'+
+				'</div>',
 		tNotFound: 'Content not found'
 	},
 	proto: {
@@ -1024,36 +1034,44 @@ $.magnificPopup.registerModule(INLINE_NS, {
 
 			_putInlineElementsBack();
 
+			$('.mfp-file-name', template).html(item.fileName);
+			$('.mfp-download', template).attr('href', item.downloadUrl);
+
 			if(item.src) {
 				var inlineSt = mfp.st.inline,
 					el = $(item.src);
 
 				if(el.length) {
+					el.addClass('mfp-inline');
 
 					// If target element has parent - we replace it with placeholder and put it back after popup is closed
-					var parent = el[0].parentNode;
-					if(parent && parent.tagName) {
-						if(!_inlinePlaceholder) {
-							_hiddenClass = inlineSt.hiddenClass;
-							_inlinePlaceholder = _getEl(_hiddenClass);
-							_hiddenClass = 'mfp-'+_hiddenClass;
-						}
-						// replace target inline element with placeholder
-						_lastInlineElement = el.after(_inlinePlaceholder).detach().removeClass(_hiddenClass);
-					}
+					// var parent = el[0].parentNode;
+					// if(parent && parent.tagName) {
+					// 	if(!_inlinePlaceholder) {
+					// 		_hiddenClass = inlineSt.hiddenClass;
+					// 		_inlinePlaceholder = _getEl(_hiddenClass);
+					// 		_hiddenClass = 'mfp-'+_hiddenClass;
+					// 	}
+					// 	// replace target inline element with placeholder
+					// 	_lastInlineElement = el.after(_inlinePlaceholder).detach().removeClass(_hiddenClass);
+					// }
 
-					mfp.updateStatus('ready');
+					// mfp.updateStatus('ready');
 				} else {
 					mfp.updateStatus('error', inlineSt.tNotFound);
 					el = $('<div>');
 				}
 
+				// template.find('.mfp-inline').append(el);
+
 				item.inlineElement = el;
-				return el;
+				// return template;
 			}
 
 			mfp.updateStatus('ready');
-			mfp._parseMarkup(template, {}, item);
+			mfp._parseMarkup(template, {
+				inline_replaceWith: item.inlineElement
+			}, item);
 			return template;
 		}
 	}
@@ -1166,7 +1184,6 @@ $.magnificPopup.registerModule('image', {
 		markup: '<div class="mfp-figure">'+
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
-               // '<a class="mfp-download" target = "_blank" download=""><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;display: block;width: 24px;height: 18px;color: #fff;/* background: #9e4545; */position: absolute;left: -40px;top: 19px;transform: scale(1.5);"><g><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></g></svg>下载</a>'+
                '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
                '<div class="mfp-close"></div>'+
            '</div>' +
@@ -1346,9 +1363,9 @@ $.magnificPopup.registerModule('image', {
 				}
 				item.img = $(img).on('load.mfploader', onLoadComplete).on('error.mfploader', onLoadError);
 				img.src = item.src;
-        $download.attr('href', item.src);
-        $fileName.text(item.fileName);
-        // download.href = item.src;
+		        $download.attr('href', item.downloadUrl);
+		        $fileName.text(item.fileName);
+        		// download.href = item.src;
 
 				// without clone() "error" event is not firing when IMG is replaced by new IMG
 				// TODO: find a way to avoid such cloning
@@ -1616,7 +1633,6 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 		markup: '<div class="mfp-iframe-scaler">'+
             '<div class="mfp-header-wrapper">' +
               '<div class="mfp-file-name"></div>'+
-              // '<a class="mfp-download" target="_blank" download=""><svg viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;display: block;width: 24px;height: 18px;color: #fff;/* background: #9e4545; */position: absolute;left: -40px;top: 19px;transform: scale(1.5);"><g><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"></path></g></svg>下载</a>'+
               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
               '<div class="mfp-close"></div>'+
             '</div>' +
@@ -1668,8 +1684,8 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 		getIframe: function(item, template) {
 			var embedSrc = item.src;
 			var iframeSt = mfp.st.iframe;
-      $('.mfp-file-name', template).html(item.fileName);
-      $('.mfp-download', template).attr('href', item.src.split('furl=')[1]);
+			$('.mfp-file-name', template).html(item.fileName);
+			$('.mfp-download', template).attr('href', item.downloadUrl.split('furl=')[1]);
 			$.each(iframeSt.patterns, function() {
 				if(embedSrc.indexOf( this.index ) > -1) {
 					if(this.id) {

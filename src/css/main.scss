@@ -105,6 +105,18 @@
     cursor: auto;
   }
 }
+.mfp-inline-holder {
+  .mfp-content {
+    width: 80%;
+    height: 80%;
+  }
+  .mfp-inline-wrapper {
+    height: 100%;
+    .mfp-inline {
+      height: 100%;
+    }
+  }
+}
 .mfp-header-wrapper {
   position: fixed;
   top: 0;
@@ -339,6 +351,7 @@ button {
   }
 }
 .mfp-image-holder,
+.mfp-inline-holder,
 .mfp-iframe-holder {
   .mfp-close {
     color: $mfp-controls-color;

@@ -53,6 +53,15 @@
   width: 100%;
   cursor: auto; }
 
+.mfp-inline-holder .mfp-content {
+  width: 80%;
+  height: 80%; }
+
+.mfp-inline-holder .mfp-inline-wrapper {
+  height: 100%; }
+  .mfp-inline-holder .mfp-inline-wrapper .mfp-inline {
+    height: 100%; }
+
 .mfp-header-wrapper {
   position: fixed;
   top: 0;
@@ -209,6 +218,7 @@ button::-moz-focus-inner {
   color: #333; }
 
 .mfp-image-holder .mfp-close,
+.mfp-inline-holder .mfp-close,
 .mfp-iframe-holder .mfp-close {
   color: #FFF;
   right: -6px;

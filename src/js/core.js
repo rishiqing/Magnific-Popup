@@ -598,17 +598,20 @@ MagnificPopup.prototype = {
 				item.src = item.el.attr('href');
 			}
 		}
-    var src = item.src;
-		item.type = type || mfp.st.type || 'inline';
-		item.index = index;
-		item.parsed = true;
+	    var src = item.src;
+			item.type = type || mfp.st.type || 'inline';
+			item.index = index;
+			item.parsed = true;
+		if (/^http[s]*:\/\//.test(src)) { // 如果src是一个链接
+			var _sliceIndex = src.lastIndexOf('?Expires');
+		    var fileName = src.slice(0, _sliceIndex === -1 ? src.length : _sliceIndex);
 
-    var _sliceIndex = src.lastIndexOf('?Expires');
-    src = src.slice(0, _sliceIndex === -1 ? src.length : _sliceIndex);
+		    fileName = fileName.slice(fileName.lastIndexOf('/') + 1);
+		    fileName = decodeURIComponent(fileName);
+		    item.fileName = item.fileName || fileName;
+		    item.downloadUrl = src;
+		}
 
-    src = src.slice(src.lastIndexOf('/') + 1);
-    src = decodeURIComponent(src);
-    item.fileName = src;
 		mfp.items[index] = item;
 		_mfpTrigger('ElementParse', item);
 
@@ -891,7 +894,7 @@ $.magnificPopup = {
 		closeBtnInside: true,
 
 		showCloseBtn: true,
-    shwoDownloadBtn: true,
+    	shwoDownloadBtn: true,
 
 		enableEscapeKey: true,
 
@@ -910,7 +913,7 @@ $.magnificPopup = {
 		overflowY: 'auto',
 
 		closeMarkup: '<button title="%title%" type="button" class="mfp-close">&#215;</button>',
-    downloadMarkUp: '<div class="mfp-download">下载</div>',
+    	downloadMarkUp: '<div class="mfp-download">下载</div>',
 
 		tClose: 'Close (Esc)',
 
