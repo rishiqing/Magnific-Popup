@@ -927,7 +927,7 @@ $.magnificPopup = {
 
 		tLoading: 'Loading...',
 
-		autoFocusLast: true
+		autoFocusLast: true,
 		callbacks: {},
 	}
 };
