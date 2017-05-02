@@ -1,9 +1,9 @@
 /**
- * 
+ *
  * Run 'grunt' to generate JS and CSS in folder 'dist' and site in folder '_site'
  * *
  * Run 'grunt watch' to automatically regenerate '_site' when you change files in 'src' or in 'website'
- * 
+ *
  */
 
 module.exports = function(grunt) {
@@ -31,10 +31,10 @@ module.exports = function(grunt) {
     clean: {
       files: ['dist']
     },
-    
-    sass: {                            
-      dist: {                      
-        files: {      
+
+    sass: {
+      dist: {
+        files: {
           'dist/magnific-popup.css': 'src/css/main.scss'
         }
       }
@@ -82,7 +82,7 @@ module.exports = function(grunt) {
           url: 'production',
           raw: jekyllConfig + "url: production"
         }
-        
+
       }
     },
 
@@ -143,8 +143,8 @@ module.exports = function(grunt) {
         basePath = this.data.basePath,
         newContents = this.data.banner + ";(function (factory) { \n" +
             "if (typeof define === 'function' && define.amd) { \n" +
-            " // AMD. Register as an anonymous module. \n" + 
-            " define(['jquery'], factory); \n" + 
+            " // AMD. Register as an anonymous module. \n" +
+            " define(['jquery'], factory); \n" +
             " } else if (typeof exports === 'object') { \n" +
             " // Node/CommonJS \n" +
             " factory(require('jquery')); \n" +
@@ -169,22 +169,22 @@ module.exports = function(grunt) {
 
       includes.forEach(function( name ) {
         if(name) {
-           
+
            grunt.log.writeln( 'removed "'+name +'"' );
            files = removeA(files, name);
          }
       });
     }
-    
+
     files.unshift('core');
 
     grunt.log.writeln( 'Your build is made of:'+files );
 
     files.forEach(function( name ) {
       // Wrap each module with a pience of code to be able to exlude it, stolen for modernizr.com
-      newContents += "\n/*>>"+name+"*/\n"; 
+      newContents += "\n/*>>"+name+"*/\n";
       newContents += grunt.file.read( basePath + name + '.js' ) + '\n';
-      newContents += "\n/*>>"+name+"*/\n"; 
+      newContents += "\n/*>>"+name+"*/\n";
     });
     newContents+= " _checkInstance(); }));";
 
@@ -207,7 +207,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   // Default task.
-  grunt.registerTask('default', ['sass', 'mfpbuild', 'uglify', 'copy', 'jekyll:dev']);
+  grunt.registerTask('default', ['watch']);
+  // grunt.registerTask('default', ['sass', 'mfpbuild', 'uglify', 'copy', 'jekyll:dev']);
   // grunt.registerTask('default', ['sass', 'mfpbuild', 'uglify', 'copy']);
 
   grunt.registerTask('production', ['sass', 'mfpbuild', 'uglify', 'copy', 'cssmin', 'jekyll:production']);

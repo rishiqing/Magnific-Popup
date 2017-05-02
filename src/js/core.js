@@ -16,6 +16,7 @@ var CLOSE_EVENT = 'Close',
 	OPEN_EVENT = 'Open',
 	CHANGE_EVENT = 'Change',
 	UPDATE_FILE_EVENT = 'UpdateFile',
+	EDIT_MINDER = 'EditMinder',
 	NS = 'mfp',
 	EVENT_NS = '.' + NS,
 	READY_CLASS = 'mfp-ready',
@@ -386,6 +387,9 @@ MagnificPopup.prototype = {
 
 		mfp.wrap.find('#mfp-update-file').change(function () {
 			_mfpTrigger(UPDATE_FILE_EVENT, mfp.currItem);
+		});
+		mfp.wrap.find('.mfp-edit-minder').click(function () {
+			_mfpTrigger(EDIT_MINDER, mfp.currItem);
 		});
 
 		mfp.isOpen = true;

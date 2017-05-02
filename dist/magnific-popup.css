@@ -405,3 +405,20 @@ img.mfp-img {
   .mfp-container {
     padding-left: 6px;
     padding-right: 6px; } }
+
+.mfp-figure-control {
+  float: right;
+  margin-top: 18px;
+  margin-right: 80px; }
+  .mfp-figure-control button {
+    background: none;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border: none;
+    background: #eee; }
+  .mfp-figure-control span {
+    width: 30px;
+    height: 26px; }
+  .mfp-figure-control .mfp-figure-control-rotate {
+    margin-left: 20px; }

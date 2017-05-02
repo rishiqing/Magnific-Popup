@@ -655,3 +655,23 @@ button {
   }
 }
 
+.mfp-figure-control {
+  float: right;
+  margin-top: 18px;
+  margin-right: 80px;
+  button {
+    background: none;
+    width: 20px;
+    height: 20px;
+    outline: none;
+    border: none;
+    background: #eee;
+  }
+  span {
+    width: 30px;
+    height: 26px;
+  }
+  .mfp-figure-control-rotate {
+    margin-left: 20px;
+  }
+}

@@ -33,6 +33,7 @@ var CLOSE_EVENT = 'Close',
 	OPEN_EVENT = 'Open',
 	CHANGE_EVENT = 'Change',
 	UPDATE_FILE_EVENT = 'UpdateFile',
+	EDIT_MINDER = 'EditMinder',
 	NS = 'mfp',
 	EVENT_NS = '.' + NS,
 	READY_CLASS = 'mfp-ready',
@@ -403,6 +404,9 @@ MagnificPopup.prototype = {
 
 		mfp.wrap.find('#mfp-update-file').change(function () {
 			_mfpTrigger(UPDATE_FILE_EVENT, mfp.currItem);
+		});
+		mfp.wrap.find('.mfp-edit-minder').click(function () {
+			_mfpTrigger(EDIT_MINDER, mfp.currItem);
 		});
 
 		mfp.isOpen = true;
@@ -1023,6 +1027,8 @@ $.magnificPopup.registerModule(INLINE_NS, {
 					'<div class="mfp-header-wrapper">' +
 						'<div class="mfp-file-name"></div>'+
 						'<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+						'<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
+						'<button class="mfp-edit-minder"><i class="icon-edit"></i>编辑</button>'+
 						'<div class="mfp-close"></div>'+
 					'</div>'+
 					'<div class="mfp-inline"></div>'+
@@ -1085,6 +1091,7 @@ $.magnificPopup.registerModule(INLINE_NS, {
 		}
 	}
 });
+
 
 /*>>inline*/
 
@@ -1194,7 +1201,13 @@ $.magnificPopup.registerModule('image', {
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
                '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
-               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" /><i class = "icon-update"></i>更新</label>' +
+               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
+               '<div class = "mfp-figure-control">' +
+	               '<button class = "mfp-figure-control-zoom-out"><i classs = "icon"></i></button>' +
+	               '<span class = "mfp-ratio-view">100%</span>' +
+	               '<button class = "mfp-figure-control-zoom-in"><i classs = "icon"></i></button>' +
+	               '<button class = "mfp-figure-control-rotate"><i class = "icon-"></i></button>' +
+               '</div>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
 					'<figure>'+
@@ -1645,6 +1658,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
             '<div class="mfp-header-wrapper">' +
               '<div class="mfp-file-name"></div>'+
               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+              '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
               '<div class="mfp-close"></div>'+
             '</div>' +
 					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
