@@ -201,6 +201,11 @@ $.magnificPopup.registerModule('image', {
 			var el = template.find('.mfp-img');
 			var $fileName = template.find('.mfp-file-name');
 			var $download = template.find('.mfp-download');
+
+
+			// template.find('.mfp-figure-control-zoom-in').panzoom('$zoomIn');
+			// template.find('.mfp-figure-control-zoom-out').panzoom('$zoomOut');
+
 			if(el.length) {
 				var img = document.createElement('img');
 				img.className = 'mfp-img';
@@ -225,6 +230,8 @@ $.magnificPopup.registerModule('image', {
 				} else if(!img.width) {
 					item.hasSize = false;
 				}
+				// img.panzoom('$zoomIn', template.find('.mfp-figure-control-zoom-in'));
+				// img.panzoom('$zoomOut', template.find('.mfp-figure-control-zoom-out'));
 			}
 
 			mfp._parseMarkup(template, {

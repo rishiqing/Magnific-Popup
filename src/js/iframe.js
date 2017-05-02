@@ -25,9 +25,11 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 		markup: '<div class="mfp-iframe-scaler">'+
             '<div class="mfp-header-wrapper">' +
               '<div class="mfp-file-name"></div>'+
-              '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
-              '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
-              '<div class="mfp-close"></div>'+
+               '<div class = "mfp-extra-center">' +
+	               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
+               '</div>' +
+               '<div class="mfp-close"></div>'+
             '</div>' +
 					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+
 				'</div>',
