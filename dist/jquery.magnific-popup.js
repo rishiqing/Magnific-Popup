@@ -401,7 +401,7 @@ MagnificPopup.prototype = {
 
 		}, 16);
 
-		mfp.wrap.find('.mfp-update').click(function () {
+		mfp.wrap.find('#mfp-update-file').change(function () {
 			_mfpTrigger(UPDATE_FILE_EVENT, mfp.currItem);
 		});
 
@@ -1194,7 +1194,7 @@ $.magnificPopup.registerModule('image', {
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
                '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
-               '<button class = "mfp-update"><i class = "icon-update"></i>更新</button>' +
+               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" /><i class = "icon-update"></i>更新</label>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
 					'<figure>'+

@@ -384,7 +384,7 @@ MagnificPopup.prototype = {
 
 		}, 16);
 
-		mfp.wrap.find('.mfp-update').click(function () {
+		mfp.wrap.find('#mfp-update-file').change(function () {
 			_mfpTrigger(UPDATE_FILE_EVENT, mfp.currItem);
 		});
 
