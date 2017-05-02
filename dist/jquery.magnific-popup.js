@@ -1203,10 +1203,10 @@ $.magnificPopup.registerModule('image', {
                '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
                '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
                '<div class = "mfp-figure-control">' +
-	               '<button class = "mfp-figure-control-zoom-out"><i classs = "icon"></i></button>' +
+	               '<button class = "mfp-figure-control-zoom-in"><i classs = "icon-ic_zoom_in_black_24px"></i></button>' +
 	               '<span class = "mfp-ratio-view">100%</span>' +
-	               '<button class = "mfp-figure-control-zoom-in"><i classs = "icon"></i></button>' +
-	               '<button class = "mfp-figure-control-rotate"><i class = "icon-"></i></button>' +
+	               '<button class = "mfp-figure-control-zoom-out"><i classs = "icon-ic_zoom_out_black_24px"></i></button>' +
+	               '<button class = "mfp-figure-control-rotate"><i class = "icon-uniE906"></i></button>' +
                '</div>' +
                '<div class="mfp-close"></div>'+
            '</div>' +

@@ -70,7 +70,8 @@
   height: 54px;
   text-align: center;
   cursor: default;
-  background: rgba(0, 0, 0, 0.86); }
+  background: rgba(0, 0, 0, 0.86);
+  z-index: 1; }
   .mfp-header-wrapper .mfp-file-name {
     font-size: 18px;
     line-height: 54px;
@@ -188,7 +189,8 @@ button.mfp-arrow {
   cursor: pointer;
   position: absolute;
   top: calc(50vh + 54px);
-  transform: translateY(-50%); }
+  transform: translateY(-50%);
+  z-index: 1046; }
 
 button::-moz-focus-inner {
   padding: 0;
@@ -301,15 +303,11 @@ button::-moz-focus-inner {
 
 /* Main image in popup */
 img.mfp-img {
-  position: absolute;
   height: auto;
   width: auto;
   box-sizing: border-box;
   border: 0;
-  max-height: calc(100% - 50px) !important;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%; }
+  max-width: calc(100% - 172px); }
 
 /* The shadow behind the image */
 .mfp-figure {
@@ -333,7 +331,12 @@ img.mfp-img {
     font-size: 12px;
     line-height: 14px; }
   .mfp-figure figure {
-    margin: 0; }
+    margin: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 .mfp-bottom-bar {
   margin-top: -36px;
@@ -422,3 +425,6 @@ img.mfp-img {
     height: 26px; }
   .mfp-figure-control .mfp-figure-control-rotate {
     margin-left: 20px; }
+
+button.mfp-close {
+  cursor: pointer !important; }

@@ -126,6 +126,7 @@
   text-align: center;
   cursor: default;
   background:rgba(0,0,0,0.86);
+  z-index: 1;
   .mfp-file-name {
     font-size: 18px;
     line-height: 54px;
@@ -295,20 +296,9 @@ button {
     background: rgba(0, 0, 0, .5);
     cursor: pointer;
     position: absolute;
-//    top: 50%;
     top: calc(50vh + 54px);
     transform: translateY(-50%);
-//    overflow: visible;
-//    cursor: pointer;
-//    background: transparent;
-//    border: 0;
-//    -webkit-appearance: none;
-//    display: block;
-//    outline: none;
-//    padding: 0;
-//    z-index: $mfp-z-index-base + 6;
-//    box-shadow: none;
-//    touch-action: manipulation;
+    z-index: 1046;
   }
   &::-moz-focus-inner {
       padding: 0;
@@ -494,17 +484,19 @@ button {
   /* Main image in popup */
   img {
     &.mfp-img {
-      position: absolute;
+      // position: absolute;
       height: auto;
       width: auto;
 //      max-height: 100%;
       // margin: auto;
       box-sizing: border-box;
       border: 0;
-      max-height: calc(100% - 50px)!important;
-      transform: translate(-50%, -50%);
-      top: 50%;
-      left: 50%;
+      max-width: calc(100% - 172px);
+      // max-height: calc(100% - 50px)!important;
+      // max-width: calc(100% - 50px)!important;
+      // transform: translate(-50%, -50%);
+      // top: 50%;
+      // left: 50%;
       // width: auto;
 //      height: auto;
 //      width: auto;
@@ -542,6 +534,11 @@ button {
     }
     figure {
       margin: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
   .mfp-bottom-bar {
@@ -674,4 +671,7 @@ button {
   .mfp-figure-control-rotate {
     margin-left: 20px;
   }
+}
+button.mfp-close {
+  cursor: pointer!important;
 }
