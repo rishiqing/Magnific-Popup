@@ -387,6 +387,7 @@ MagnificPopup.prototype = {
 
 		mfp.wrap.find('#mfp-update-file').change(function () {
 			_mfpTrigger(UPDATE_FILE_EVENT, mfp.currItem);
+			this.value = '';
 		});
 		mfp.wrap.find('.mfp-edit-minder').click(function () {
 			_mfpTrigger(EDIT_MINDER, mfp.currItem);
@@ -394,7 +395,7 @@ MagnificPopup.prototype = {
 
 		mfp.isOpen = true;
 		mfp.updateSize(windowHeight);
-		_mfpTrigger(OPEN_EVENT);
+		_mfpTrigger(OPEN_EVENT, mfp);
 
 		return data;
 	},
