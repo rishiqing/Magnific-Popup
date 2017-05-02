@@ -414,6 +414,27 @@ MagnificPopup.prototype = {
 		mfp.updateSize(windowHeight);
 		_mfpTrigger(OPEN_EVENT, mfp);
 
+		setTimeout(function () {
+			var rotate = 0;
+			var wrap = mfp.wrap, $figure = wrap.find('figure'), img = $figure.find('img');
+			wrap.find('.mfp-figure-control-zoom-in').click(function () {
+			  mfp.panZoom.zoomIn();
+			});
+			wrap.find('.mfp-figure-control-zoom-out').click(function () {
+			  mfp.panZoom.zoomOut();
+			});
+			wrap.find('.mfp-figure-control-rotate').click(function () {
+				if (rotate === 5) {
+					rotate = 0;
+				} else {
+					rotate++;
+				}
+				$figure.css({
+					transform: 'rotate(' + rotate * 90 + 'deg)'
+				});
+			});
+		});
+
 		return data;
 	},
 
@@ -559,7 +580,10 @@ MagnificPopup.prototype = {
 
 		item.preloaded = true;
 
-		_mfpTrigger(CHANGE_EVENT, item);
+		_mfpTrigger(CHANGE_EVENT, item, mfp);
+		mfp.wrap.find('figure').css({
+			transform: 'rotate(0deg)'
+		});
 		_prevContentType = item.type;
 
 		// Append container back after its content changed
