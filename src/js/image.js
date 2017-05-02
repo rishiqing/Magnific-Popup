@@ -22,6 +22,7 @@ $.magnificPopup.registerModule('image', {
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
                '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+               '<button class = "mfp-update"><i class = "icon-update"></i>更新</button>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
 					'<figure>'+

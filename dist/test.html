@@ -34,11 +34,21 @@
             navigateByImgClick: false,
             tPrev: '上一个', // title for left button
             tNext: '下一个'
+        },
+        callbacks : {
+            updateFile: function (item) {
+                console.log(item, 'updateFile')
+            }
         }
         // other options
     });
     $('.pdf').magnificPopup({
-        type: 'iframe'
+        type: 'iframe',
+        callbacks : {
+            updateFile: function (item) {
+                console.log(item, 'updateFile')
+            }
+        }
     });
 </script>
 </body>

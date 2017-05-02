@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2017-04-27
+/*! Magnific Popup - v1.1.0 - 2017-05-02
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
@@ -16,9 +16,9 @@ if (typeof define === 'function' && define.amd) {
 
 /*>>core*/
 /**
- * 
+ *
  * Magnific Popup Core JS file
- * 
+ *
  */
 
 
@@ -32,6 +32,7 @@ var CLOSE_EVENT = 'Close',
 	MARKUP_PARSE_EVENT = 'MarkupParse',
 	OPEN_EVENT = 'Open',
 	CHANGE_EVENT = 'Change',
+	UPDATE_FILE_EVENT = 'UpdateFile',
 	NS = 'mfp',
 	EVENT_NS = '.' + NS,
 	READY_CLASS = 'mfp-ready',
@@ -40,7 +41,7 @@ var CLOSE_EVENT = 'Close',
 
 
 /**
- * Private vars 
+ * Private vars
  */
 /*jshint -W079 */
 var mfp, // As we have only one instance of MagnificPopup object, we define it locally to not to use 'this'
@@ -117,15 +118,15 @@ var _mfpOn = function(name, f) {
 			v = ['ms','O','Moz','Webkit']; // 'v' for vendor
 
 		if( s['transition'] !== undefined ) {
-			return true; 
+			return true;
 		}
-			
+
 		while( v.length ) {
 			if( v.pop() + 'Transition' in s ) {
 				return true;
 			}
 		}
-				
+
 		return false;
 	},
   _closeDialog = function (e) {
@@ -148,7 +149,7 @@ MagnificPopup.prototype = {
 	constructor: MagnificPopup,
 
 	/**
-	 * Initializes Magnific Popup plugin. 
+	 * Initializes Magnific Popup plugin.
 	 * This function is triggered only once when $.fn.magnificPopup or $.magnificPopup is executed
 	 */
 	init: function() {
@@ -174,7 +175,7 @@ MagnificPopup.prototype = {
 
 		var i;
 
-		if(data.isObj === false) { 
+		if(data.isObj === false) {
 			// convert jQuery collection to array to avoid conflicts later
 			mfp.items = data.items.toArray();
 
@@ -201,8 +202,8 @@ MagnificPopup.prototype = {
 			mfp.updateItemHTML();
 			return;
 		}
-		
-		mfp.types = []; 
+
+		mfp.types = [];
 		_wrapClasses = '';
 		if(data.mainEl && data.mainEl.length) {
 			mfp.ev = data.mainEl.eq(0);
@@ -221,7 +222,7 @@ MagnificPopup.prototype = {
 
 
 
-		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data ); 
+		mfp.st = $.extend(true, {}, $.magnificPopup.defaults, data );
 		mfp.fixedContentPos = mfp.st.fixedContentPos === 'auto' ? !mfp.probablyMobile : mfp.st.fixedContentPos;
 
 		if(mfp.st.modal) {
@@ -230,7 +231,7 @@ MagnificPopup.prototype = {
 			mfp.st.showCloseBtn = false;
 			mfp.st.enableEscapeKey = false;
 		}
-		
+
 
 		// Building markup
 		// main containers are created only once
@@ -282,7 +283,7 @@ MagnificPopup.prototype = {
 			_wrapClasses += ' mfp-align-top';
 		}
 
-	
+
 
 		if(mfp.fixedContentPos) {
 			mfp.wrap.css({
@@ -291,7 +292,7 @@ MagnificPopup.prototype = {
 				overflowY: mfp.st.overflowY
 			});
 		} else {
-			mfp.wrap.css({ 
+			mfp.wrap.css({
 				top: _window.scrollTop(),
 				position: 'absolute'
 			});
@@ -303,7 +304,7 @@ MagnificPopup.prototype = {
 			});
 		}
 
-		
+
 
 		if(mfp.st.enableEscapeKey) {
 			// Close on ESC key
@@ -320,6 +321,9 @@ MagnificPopup.prototype = {
 			//});
 		}
 
+
+		// if (data)
+
 		_window.on('resize' + EVENT_NS, function() {
 			mfp.updateSize();
 		});
@@ -328,7 +332,7 @@ MagnificPopup.prototype = {
 		if(!mfp.st.closeOnContentClick) {
 			_wrapClasses += ' mfp-auto-cursor';
 		}
-		
+
 		if(_wrapClasses)
 			mfp.wrap.addClass(_wrapClasses);
 
@@ -336,7 +340,7 @@ MagnificPopup.prototype = {
 		// this triggers recalculation of layout, so we get it once to not to trigger twice
 		var windowHeight = mfp.wH = _window.height();
 
-		
+
 		var windowStyles = {};
 
 		if( mfp.fixedContentPos ) {
@@ -357,8 +361,8 @@ MagnificPopup.prototype = {
 			}
 		}
 
-		
-		
+
+
 		var classesToadd = mfp.st.mainClass;
 		if(mfp.isIE7) {
 			classesToadd += ' mfp-ie7';
@@ -374,16 +378,16 @@ MagnificPopup.prototype = {
 
 		// remove scrollbar, add margin e.t.c
 		$('html').css(windowStyles);
-		
+
 		// add everything to DOM
 		mfp.bgOverlay.add(mfp.wrap).prependTo( mfp.st.prependTo || $(document.body) );
 
 		// Save last focused element
 		mfp._lastFocusedEl = document.activeElement;
-		
+
 		// Wait for next cycle to allow CSS transition
 		setTimeout(function() {
-			
+
 			if(mfp.content) {
 				mfp._addClassToMFP(READY_CLASS);
 				mfp._setFocus();
@@ -391,11 +395,15 @@ MagnificPopup.prototype = {
 				// if content is not defined (not loaded e.t.c) we add class only for BG
 				mfp.bgOverlay.addClass(READY_CLASS);
 			}
-			
+
 			// Trap the focus in popup
 			_document.on('focusin' + EVENT_NS, mfp._onFocusIn);
 
 		}, 16);
+
+		mfp.wrap.find('.mfp-update').click(function () {
+			_mfpTrigger(UPDATE_FILE_EVENT, mfp.currItem);
+		});
 
 		mfp.isOpen = true;
 		mfp.updateSize(windowHeight);
@@ -451,7 +459,7 @@ MagnificPopup.prototype = {
 			}
 			$('html').css(windowStyles);
 		}
-		
+
 		_document.off('keyup' + EVENT_NS + ' focusin' + EVENT_NS);
 		mfp.ev.off(EVENT_NS);
 
@@ -471,14 +479,14 @@ MagnificPopup.prototype = {
 		if(mfp.st.autoFocusLast && mfp._lastFocusedEl) {
 			$(mfp._lastFocusedEl).focus(); // put tab focus back
 		}
-		mfp.currItem = null;	
+		mfp.currItem = null;
 		mfp.content = null;
 		mfp.currTemplate = null;
 		mfp.prevHeight = 0;
     window.removeEventListener('keydown', _closeDialog);
 		_mfpTrigger(AFTER_CLOSE_EVENT);
 	},
-	
+
 	updateSize: function(winHeight) {
 
 		if(mfp.isIOS) {
@@ -992,6 +1000,7 @@ $.fn.magnificPopup = function(options) {
 	return jqEl;
 };
 
+
 /*>>core*/
 
 /*>>inline*/
@@ -1185,6 +1194,7 @@ $.magnificPopup.registerModule('image', {
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
                '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+               '<button class = "mfp-update"><i class = "icon-update"></i>更新</button>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
 					'<figure>'+
@@ -1414,6 +1424,7 @@ $.magnificPopup.registerModule('image', {
 		}
 	}
 });
+
 
 /*>>image*/
 
