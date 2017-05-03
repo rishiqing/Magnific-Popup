@@ -662,6 +662,7 @@ MagnificPopup.prototype = {
 
 	resetItem : function (item) {
 		if (!item || !item.el) return;
+		if (!item.el[0]) return;
 		mfp.items[mfp.index] = item.el[0];
 		// // var item = mfp.items[index];
 		// if (item.el) {
@@ -1743,10 +1744,11 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 		markup: '<div class="mfp-iframe-scaler">'+
             '<div class="mfp-header-wrapper">' +
               '<div class="mfp-file-name"></div>'+
-               '<div class = "mfp-extra-center">' +
+							'<div class = "mfp-extra-center">' +
 	               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
 	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
-               '</div>' +
+	               '<button class="mfp-edit-minder"><i class="icon-create"></i>编辑</button>'+
+	           	'</div>' +
                '<div class="mfp-close"></div>'+
             '</div>' +
 					'<iframe class="mfp-iframe" src="//about:blank" frameborder="0" allowfullscreen></iframe>'+

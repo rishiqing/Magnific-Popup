@@ -451,6 +451,12 @@ button.mfp-close {
   width: 100% !important;
   left: 0 !important; }
 
+.mfp-edit-minder {
+  display: none; }
+
+.mfp-isKm .mfp-edit-minder {
+  display: block; }
+
 .mfp-isPPT .mfp-arrow {
   display: none; }
 

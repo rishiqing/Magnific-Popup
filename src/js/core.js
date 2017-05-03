@@ -645,6 +645,7 @@ MagnificPopup.prototype = {
 
 	resetItem : function (item) {
 		if (!item || !item.el) return;
+		if (!item.el[0]) return;
 		mfp.items[mfp.index] = item.el[0];
 		// // var item = mfp.items[index];
 		// if (item.el) {
