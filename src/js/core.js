@@ -580,6 +580,11 @@ MagnificPopup.prototype = {
 		} else {
 			mfp.wrap.removeClass('mfp-isPPT');
 		}
+		if (/\.km$/.test(item.fileName)) {
+			mfp.wrap.addClass('mfp-isKm');
+		} else {
+			mfp.wrap.removeClass('mfp-isKm');
+		}
 	},
 
 
