@@ -293,7 +293,7 @@ button::-moz-focus-inner {
   .mfp-iframe-holder .mfp-content {
     line-height: 0;
     width: 100%;
-    max-width: 100%; }
+    max-width: 900px; }
 
 .mfp-iframe-scaler {
   width: 100%;
@@ -445,3 +445,7 @@ button.mfp-close {
 
 #mfp-update-file {
   display: none; }
+
+.WACStatusBarContainer {
+  width: 100% !important;
+  left: 0 !important; }
