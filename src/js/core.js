@@ -564,15 +564,22 @@ MagnificPopup.prototype = {
 		item.preloaded = true;
 
 		_mfpTrigger(CHANGE_EVENT, item, mfp);
-		mfp.wrap.find('figure').css({
-			transform: 'rotate(0deg)'
-		});
+
 		_prevContentType = item.type;
 
 		// Append container back after its content changed
 		mfp.container.prepend(mfp.contentContainer);
 
-		_mfpTrigger('AfterChange');
+		_mfpTrigger('AfterChange', mfp, item);
+
+		mfp.wrap.find('figure').css({
+			transform: 'rotate(0deg)'
+		});
+		if (/\.pptx?$/.test(item.fileName)) {
+			mfp.wrap.addClass('mfp-isPPT');
+		} else {
+			mfp.wrap.removeClass('mfp-isPPT');
+		}
 	},
 
 

@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2017-05-02
+/*! Magnific Popup - v1.1.0 - 2017-05-03
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
@@ -581,15 +581,22 @@ MagnificPopup.prototype = {
 		item.preloaded = true;
 
 		_mfpTrigger(CHANGE_EVENT, item, mfp);
-		mfp.wrap.find('figure').css({
-			transform: 'rotate(0deg)'
-		});
+
 		_prevContentType = item.type;
 
 		// Append container back after its content changed
 		mfp.container.prepend(mfp.contentContainer);
 
-		_mfpTrigger('AfterChange');
+		_mfpTrigger('AfterChange', mfp, item);
+
+		mfp.wrap.find('figure').css({
+			transform: 'rotate(0deg)'
+		});
+		if (/\.pptx?$/.test(item.fileName)) {
+			mfp.wrap.addClass('mfp-isPPT');
+		} else {
+			mfp.wrap.removeClass('mfp-isPPT');
+		}
 	},
 
 
@@ -1284,14 +1291,14 @@ $.magnificPopup.registerModule('image', {
 			var item = mfp.currItem;
 			if(!item || !item.img) return;
 
-			if(mfp.st.image.verticalFit) {
-				var decr = 0;
-				// fix box-sizing in ie7/8
-				if(mfp.isLowIE) {
-					decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
-				}
-				item.img.css('max-height', mfp.wH-decr);
-			}
+			// if(mfp.st.image.verticalFit) {
+			// 	var decr = 0;
+			// 	// fix box-sizing in ie7/8
+			// 	if(mfp.isLowIE) {
+			// 		decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
+			// 	}
+			// 	item.img.css('max-height', mfp.wH-decr);
+			// }
 		},
 		_onImageHasSize: function(item) {
 			if(item.img) {

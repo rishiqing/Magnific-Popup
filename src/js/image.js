@@ -78,14 +78,14 @@ $.magnificPopup.registerModule('image', {
 			var item = mfp.currItem;
 			if(!item || !item.img) return;
 
-			if(mfp.st.image.verticalFit) {
-				var decr = 0;
-				// fix box-sizing in ie7/8
-				if(mfp.isLowIE) {
-					decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
-				}
-				item.img.css('max-height', mfp.wH-decr);
-			}
+			// if(mfp.st.image.verticalFit) {
+			// 	var decr = 0;
+			// 	// fix box-sizing in ie7/8
+			// 	if(mfp.isLowIE) {
+			// 		decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
+			// 	}
+			// 	item.img.css('max-height', mfp.wH-decr);
+			// }
 		},
 		_onImageHasSize: function(item) {
 			if(item.img) {

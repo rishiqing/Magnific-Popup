@@ -125,6 +125,8 @@
     left: 116px;
     right: 116px;
     overflow: visible !important; }
+    .mfp-figure figure img {
+      max-height: auto !important; }
 
 .mfp-ajax-cur {
   cursor: progress; }
@@ -291,7 +293,7 @@ button::-moz-focus-inner {
   .mfp-iframe-holder .mfp-content {
     line-height: 0;
     width: 100%;
-    max-width: 900px; }
+    max-width: 100%; }
 
 .mfp-iframe-scaler {
   width: 100%;
@@ -424,7 +426,8 @@ img.mfp-img {
   .mfp-figure-control button {
     background: none;
     outline: none;
-    border: none; }
+    border: none;
+    cursor: pointer; }
   .mfp-figure-control span {
     width: 30px;
     height: 26px; }

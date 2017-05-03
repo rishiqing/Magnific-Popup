@@ -190,6 +190,9 @@
     left: 116px;
     right: 116px;
     overflow: visible!important;
+    img {
+      max-height: auto!important;
+    }
   }
 }
 // Cursors
@@ -457,6 +460,7 @@ button {
 
 // Iframe content type
 @if $mfp-include-iframe-type {
+  $mfp-iframe-max-width: 100%;
   .mfp-iframe-holder {
     padding-top: $mfp-iframe-padding-top;
     padding-bottom: $mfp-iframe-padding-top;
@@ -496,28 +500,11 @@ button {
   /* Main image in popup */
   img {
     &.mfp-img {
-      // position: absolute;
       height: auto;
       width: auto;
-//      max-height: 100%;
-      // margin: auto;
       box-sizing: border-box;
       border: 0;
       max-width: calc(100% - 172px);
-      // max-height: calc(100% - 50px)!important;
-      // max-width: calc(100% - 50px)!important;
-      // transform: translate(-50%, -50%);
-      // top: 50%;
-      // left: 50%;
-      // width: auto;
-//      height: auto;
-//      width: auto;
-//      max-height: 100%!important;
-//      display: block;
-//      line-height: 0;
-//      box-sizing: border-box;
-//      padding: $mfp-image-padding-top 0 $mfp-image-padding-bottom;
-//      margin: 0 auto;
     }
   }
 
@@ -675,6 +662,7 @@ button {
     // height: 20px;
     outline: none;
     border: none;
+    cursor: pointer;
     // background: #eee;
   }
   span {
