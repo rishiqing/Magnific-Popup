@@ -664,10 +664,11 @@ MagnificPopup.prototype = {
 				item.src = item.el.attr('href') || item.el.attr('src');
 			}
 		}
-	    var src = item.src;
-			item.type = type || mfp.st.type || 'inline';
-			item.index = index;
-			item.parsed = true;
+    var src = item.src;
+		item.type = type || mfp.st.type || 'inline';
+		item.index = index;
+		item.parsed = true;
+
 		if (/^http[s]*:\/\//.test(src)) { // 如果src是一个链接
 			var _sliceIndex = src.lastIndexOf('?Expires');
 		    var fileName = src.slice(0, _sliceIndex === -1 ? src.length : _sliceIndex);
