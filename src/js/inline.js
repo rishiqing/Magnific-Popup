@@ -19,7 +19,7 @@ $.magnificPopup.registerModule(INLINE_NS, {
 						'<div class = "mfp-extra-center">' +
                '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
                '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
-               '<button class="mfp-edit-minder"><i class="icon-edit"></i>编辑</button>'+
+               '<button class="mfp-edit-minder"><i class="icon-create"></i>编辑</button>'+
            	'</div>' +
 						'<div class="mfp-close"></div>'+
 					'</div>'+
