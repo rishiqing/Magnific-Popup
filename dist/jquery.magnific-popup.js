@@ -403,7 +403,7 @@ MagnificPopup.prototype = {
 		}, 16);
 
 		mfp.wrap.find('#mfp-update-file').change(function () {
-			_mfpTrigger(UPDATE_FILE_EVENT, mfp.currItem);
+			_mfpTrigger(UPDATE_FILE_EVENT, [mfp.currItem, this.files[0]]);
 			this.value = '';
 		});
 		mfp.wrap.find('.mfp-edit-minder').click(function () {
@@ -580,7 +580,7 @@ MagnificPopup.prototype = {
 
 		item.preloaded = true;
 
-		_mfpTrigger(CHANGE_EVENT, item, mfp);
+		_mfpTrigger(CHANGE_EVENT, [item, mfp]);
 
 		_prevContentType = item.type;
 
