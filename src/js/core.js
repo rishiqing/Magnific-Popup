@@ -385,18 +385,16 @@ MagnificPopup.prototype = {
 
 		}, 16);
 
-		mfp.wrap.find('#mfp-update-file').change(function () {
-			_mfpTrigger(UPDATE_FILE_EVENT, [mfp.currItem, this.files[0]]);
-			this.value = '';
-		});
-		mfp.wrap.find('.mfp-edit-minder').click(function () {
-			_mfpTrigger(EDIT_MINDER, mfp.currItem);
-		});
 
 		mfp.isOpen = true;
 		mfp.updateSize(windowHeight);
 		_mfpTrigger(OPEN_EVENT, mfp);
 
+		this.bindScaleEvent();
+
+		return data;
+	},
+	bindScaleEvent:function  () {
 		setTimeout(function () {
 			var rotate = 0;
 			var wrap = mfp.wrap, $figure = wrap.find('figure'), img = $figure.find('img');
@@ -417,9 +415,33 @@ MagnificPopup.prototype = {
 				});
 			});
 		});
-
-		return data;
 	},
+	unBindScaleEvent:function  () {
+		var wrap = mfp.wrap;
+		wrap.find('.mfp-figure-control-zoom-in').off();
+		wrap.find('.mfp-figure-control-zoom-out').off();
+		wrap.find('.mfp-figure-control-rotate').off();
+	},
+	rebindScale:function () {
+		this.unBindScaleEvent();
+		this.bindScaleEvent();
+	},
+	bindUploadEvent: function () {
+		setTimeout(function () {
+			mfp.wrap.find('#mfp-update-file').change(function () {
+				_mfpTrigger(UPDATE_FILE_EVENT, [mfp.currItem, this.files[0], mfp]);
+				this.value = '';
+			});
+			mfp.wrap.find('.mfp-edit-minder').click(function () {
+				_mfpTrigger(EDIT_MINDER, mfp.currItem);
+			});
+		});
+	},
+	unBindUploadEvent: function () {
+		mfp.wrap.find('#mfp-update-file').off();
+		mfp.wrap.find('.mfp-edit-minder').off();
+	},
+
 
 	/**
 	 * Closes the popup
@@ -448,6 +470,9 @@ MagnificPopup.prototype = {
 		_mfpTrigger(CLOSE_EVENT);
 
 		var classesToRemove = REMOVING_CLASS + ' ' + READY_CLASS + ' ';
+
+		this.unBindScaleEvent();
+		this.unBindUploadEvent();
 
 		mfp.bgOverlay.detach();
 		mfp.wrap.detach();
@@ -521,6 +546,7 @@ MagnificPopup.prototype = {
 	 */
 	updateItemHTML: function() {
 		var item = mfp.items[mfp.index];
+		this.unBindUploadEvent();
    //  var fileName = item.slice();
 		// Detach and perform modifications
 		mfp.contentContainer.detach();
@@ -570,6 +596,8 @@ MagnificPopup.prototype = {
 		// Append container back after its content changed
 		mfp.container.prepend(mfp.contentContainer);
 
+		this.bindUploadEvent();
+
 		_mfpTrigger('AfterChange', mfp, item);
 
 		mfp.wrap.find('figure').css({
@@ -615,6 +643,15 @@ MagnificPopup.prototype = {
 		mfp.contentContainer.append(mfp.content);
 	},
 
+	resetItem : function (item) {
+		if (!item || !item.el) return;
+		mfp.items[mfp.index] = item.el[0];
+		// // var item = mfp.items[index];
+		// if (item.el) {
+		// 	item = item.el[0];
+		// }
+		// item.parsed = false;
+	},
 
 	/**
 	 * Creates Magnific Popup data object based on given data

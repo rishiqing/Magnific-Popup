@@ -693,6 +693,9 @@ button.mfp-close {
   left: 0!important;
 }
 .mfp-isPPT {
+  .mfp-arrow {
+    display: none;
+  }
   .mfp-content {
     max-width: 100%;
     max-height: 100%;
