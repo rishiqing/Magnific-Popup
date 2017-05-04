@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2017-05-03
+/*! Magnific Popup - v1.1.0 - 2017-05-04
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
@@ -450,7 +450,7 @@ MagnificPopup.prototype = {
 				this.value = '';
 			});
 			mfp.wrap.find('.mfp-edit-minder').click(function () {
-				_mfpTrigger(EDIT_MINDER, mfp.currItem);
+				_mfpTrigger(EDIT_MINDER, [mfp.currItem, mfp]);
 			});
 		});
 	},
@@ -479,11 +479,21 @@ MagnificPopup.prototype = {
 			mfp._close();
 		}
 	},
+	closeDirect: function  () {
+		if(!mfp.isOpen) return;
+
+		_mfpTrigger(BEFORE_CLOSE_EVENT);
+
+		mfp.isOpen = false;
+		mfp._close();
+	},
 
 	/**
 	 * Helper for close() function
 	 */
 	_close: function() {
+		// if(!mfp.isOpen) return;
+
 		_mfpTrigger(CLOSE_EVENT);
 
 		var classesToRemove = REMOVING_CLASS + ' ' + READY_CLASS + ' ';
@@ -520,10 +530,12 @@ MagnificPopup.prototype = {
 		mfp.container.attr('class', 'mfp-container');
 
 		// remove close button from target element
-		if(mfp.st.showCloseBtn &&
-		(!mfp.st.closeBtnInside || mfp.currTemplate[mfp.currItem.type] === true)) {
-			if(mfp.currTemplate.closeBtn)
-				mfp.currTemplate.closeBtn.detach();
+		if (mfp.currTemplate) {
+			if(mfp.st.showCloseBtn &&
+			(!mfp.st.closeBtnInside || mfp.currTemplate[mfp.currItem.type] === true)) {
+				if(mfp.currTemplate.closeBtn)
+					mfp.currTemplate.closeBtn.detach();
+			}
 		}
 
 

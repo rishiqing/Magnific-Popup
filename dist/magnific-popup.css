@@ -467,3 +467,6 @@ button.mfp-close {
   .mfp-isPPT .mfp-content .mfp-iframe-scaler {
     padding-top: 0;
     height: 100%; }
+
+.mfp-wrap.has-no-auth .mfp-extra-center {
+  display: none; }

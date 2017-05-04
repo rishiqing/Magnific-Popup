@@ -714,3 +714,10 @@ button.mfp-close {
     }
   }
 }
+.mfp-wrap {
+  &.has-no-auth {
+    .mfp-extra-center {
+      display: none;
+    }
+  }
+}
