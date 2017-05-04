@@ -21,7 +21,16 @@ $.magnificPopup.registerModule('image', {
 		markup: '<div class="mfp-figure">'+
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
-               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+               '<div class = "mfp-extra-center">' +
+	               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
+	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
+               '</div>' +
+               '<div class = "mfp-figure-control">' +
+	               '<button class = "mfp-figure-control-zoom-in" title="放大"><i class = "icon-ic_zoom_in_black_24px"></i></button>' +
+	               '<span class = "mfp-ratio-view">100%</span>' +
+	               '<button class = "mfp-figure-control-zoom-out" title = "缩小"><i class = "icon-ic_zoom_out_black_24px"></i></button>' +
+	               '<button class = "mfp-figure-control-rotate" title = "旋转"><i class = "icon-rotate"></i></button>' +
+               '</div>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
 					'<figure>'+
@@ -69,14 +78,14 @@ $.magnificPopup.registerModule('image', {
 			var item = mfp.currItem;
 			if(!item || !item.img) return;
 
-			if(mfp.st.image.verticalFit) {
-				var decr = 0;
-				// fix box-sizing in ie7/8
-				if(mfp.isLowIE) {
-					decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
-				}
-				item.img.css('max-height', mfp.wH-decr);
-			}
+			// if(mfp.st.image.verticalFit) {
+			// 	var decr = 0;
+			// 	// fix box-sizing in ie7/8
+			// 	if(mfp.isLowIE) {
+			// 		decr = parseInt(item.img.css('padding-top'), 10) + parseInt(item.img.css('padding-bottom'),10);
+			// 	}
+			// 	item.img.css('max-height', mfp.wH-decr);
+			// }
 		},
 		_onImageHasSize: function(item) {
 			if(item.img) {
@@ -192,6 +201,11 @@ $.magnificPopup.registerModule('image', {
 			var el = template.find('.mfp-img');
 			var $fileName = template.find('.mfp-file-name');
 			var $download = template.find('.mfp-download');
+
+
+			// template.find('.mfp-figure-control-zoom-in').panzoom('$zoomIn');
+			// template.find('.mfp-figure-control-zoom-out').panzoom('$zoomOut');
+
 			if(el.length) {
 				var img = document.createElement('img');
 				img.className = 'mfp-img';
@@ -216,6 +230,8 @@ $.magnificPopup.registerModule('image', {
 				} else if(!img.width) {
 					item.hasSize = false;
 				}
+				// img.panzoom('$zoomIn', template.find('.mfp-figure-control-zoom-in'));
+				// img.panzoom('$zoomOut', template.find('.mfp-figure-control-zoom-out'));
 			}
 
 			mfp._parseMarkup(template, {

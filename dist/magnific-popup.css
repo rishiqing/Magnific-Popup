@@ -19,6 +19,11 @@
   position: fixed;
   outline: none !important;
   -webkit-backface-visibility: hidden; }
+  .mfp-wrap button {
+    background: none;
+    outline: none;
+    border: none;
+    cursor: pointer; }
 
 .mfp-container {
   text-align: center;
@@ -70,7 +75,8 @@
   height: 54px;
   text-align: center;
   cursor: default;
-  background: rgba(0, 0, 0, 0.86); }
+  background: rgba(0, 0, 0, 0.86);
+  z-index: 1; }
   .mfp-header-wrapper .mfp-file-name {
     font-size: 18px;
     line-height: 54px;
@@ -81,18 +87,25 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     max-width: 40%; }
-  .mfp-header-wrapper .mfp-download {
+  .mfp-header-wrapper .mfp-extra-center {
     position: absolute;
     left: 50%;
     fill: currentColor;
     transform: translateX(-50%);
     color: #fff;
-    text-decoration: none;
     line-height: 54px; }
-    .mfp-header-wrapper .mfp-download .icon-get_app {
-      font-size: 24px;
-      vertical-align: -23%;
-      margin-right: 20px; }
+    .mfp-header-wrapper .mfp-extra-center a, .mfp-header-wrapper .mfp-extra-center label, .mfp-header-wrapper .mfp-extra-center button {
+      cursor: pointer; }
+      .mfp-header-wrapper .mfp-extra-center a i, .mfp-header-wrapper .mfp-extra-center label i, .mfp-header-wrapper .mfp-extra-center button i {
+        font-size: 24px;
+        vertical-align: -23%;
+        margin-right: 20px; }
+    .mfp-header-wrapper .mfp-extra-center a {
+      color: inherit;
+      text-decoration: none; }
+    .mfp-header-wrapper .mfp-extra-center a + label,
+    .mfp-header-wrapper .mfp-extra-center label + button {
+      margin-left: 30px; }
   .mfp-header-wrapper .mfp-close {
     float: right;
     margin-right: 18px;
@@ -116,7 +129,10 @@
     top: 46px;
     bottom: 18px;
     left: 116px;
-    right: 116px; }
+    right: 116px;
+    overflow: visible !important; }
+    .mfp-figure figure img {
+      max-height: auto !important; }
 
 .mfp-ajax-cur {
   cursor: progress; }
@@ -188,7 +204,8 @@ button.mfp-arrow {
   cursor: pointer;
   position: absolute;
   top: calc(50vh + 54px);
-  transform: translateY(-50%); }
+  transform: translateY(-50%);
+  z-index: 1046; }
 
 button::-moz-focus-inner {
   padding: 0;
@@ -229,7 +246,7 @@ button::-moz-focus-inner {
 .mfp-counter {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 24px;
   color: #CCC;
   font-size: 12px;
   line-height: 18px;
@@ -301,15 +318,11 @@ button::-moz-focus-inner {
 
 /* Main image in popup */
 img.mfp-img {
-  position: absolute;
   height: auto;
   width: auto;
   box-sizing: border-box;
   border: 0;
-  max-height: calc(100% - 50px) !important;
-  transform: translate(-50%, -50%);
-  top: 50%;
-  left: 50%; }
+  max-width: calc(100% - 172px); }
 
 /* The shadow behind the image */
 .mfp-figure {
@@ -333,7 +346,12 @@ img.mfp-img {
     font-size: 12px;
     line-height: 14px; }
   .mfp-figure figure {
-    margin: 0; }
+    margin: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; }
 
 .mfp-bottom-bar {
   margin-top: -36px;
@@ -405,3 +423,50 @@ img.mfp-img {
   .mfp-container {
     padding-left: 6px;
     padding-right: 6px; } }
+
+.mfp-figure-control {
+  float: right;
+  margin-top: 18px;
+  margin-right: 80px;
+  color: rgba(255, 255, 255, 0.66); }
+  .mfp-figure-control span {
+    width: 30px;
+    height: 26px; }
+    .mfp-figure-control span.mfp-ratio-view {
+      margin-right: 3px; }
+  .mfp-figure-control i[class*='icon-'] {
+    font-size: 18px;
+    vertical-align: middle;
+    margin: 0 5px; }
+  .mfp-figure-control .mfp-figure-control-rotate {
+    margin-left: 20px; }
+
+button.mfp-close {
+  cursor: pointer !important; }
+
+#mfp-update-file {
+  display: none; }
+
+.WACStatusBarContainer {
+  width: 100% !important;
+  left: 0 !important; }
+
+.mfp-edit-minder {
+  display: none; }
+
+.mfp-isKm .mfp-edit-minder {
+  display: block; }
+
+.mfp-isPPT .mfp-arrow {
+  display: none; }
+
+.mfp-isPPT .mfp-content {
+  max-width: 100%;
+  max-height: 100%;
+  height: 100%; }
+  .mfp-isPPT .mfp-content .mfp-iframe-scaler {
+    padding-top: 0;
+    height: 100%; }
+
+.mfp-wrap.has-no-auth .mfp-extra-center {
+  display: none; }
