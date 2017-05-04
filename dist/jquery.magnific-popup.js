@@ -422,7 +422,7 @@ MagnificPopup.prototype = {
 			  mfp.panZoom.zoomOut();
 			});
 			wrap.find('.mfp-figure-control-rotate').click(function () {
-				if (rotate === 5) {
+				if (rotate === 4) {
 					rotate = 0;
 				} else {
 					rotate++;
