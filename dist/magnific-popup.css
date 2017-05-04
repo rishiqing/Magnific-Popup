@@ -455,7 +455,7 @@ button.mfp-close {
   display: none; }
 
 .mfp-isKm .mfp-edit-minder {
-  display: block; }
+  display: inline; }
 
 .mfp-isPPT .mfp-arrow {
   display: none; }
