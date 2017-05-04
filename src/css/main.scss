@@ -701,13 +701,11 @@ button.mfp-close {
     display: inline;
   }
 }
-.mfp-isPPT {
+// .mfp-isPPT {
+.mfp-iframe-holder {
   .mfp-arrow {
     display: none;
   }
-}
-// .mfp-isPPT {
-.mfp-iframe-holder {
   .mfp-content {
     max-width: 100%;
     max-height: 100%;
