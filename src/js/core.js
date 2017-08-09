@@ -620,10 +620,10 @@ MagnificPopup.prototype = {
 		} else {
 			mfp.wrap.removeClass('mfp-isPPT');
 		}
-		if (/\.km$/.test(item.fileName)) {
-			mfp.wrap.addClass('mfp-isKm');
+		if (/\.(km|xmind|mm)$/.test(item.fileName)) {
+			mfp.wrap.addClass('mfp-is-minder');
 		} else {
-			mfp.wrap.removeClass('mfp-isKm');
+			mfp.wrap.removeClass('mfp-is-minder');
 		}
 	},
 

@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2017-05-04
+/*! Magnific Popup - v1.1.0 - 2017-08-09
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
@@ -637,10 +637,10 @@ MagnificPopup.prototype = {
 		} else {
 			mfp.wrap.removeClass('mfp-isPPT');
 		}
-		if (/\.km$/.test(item.fileName)) {
-			mfp.wrap.addClass('mfp-isKm');
+		if (/\.(km|xmind|mm)$/.test(item.fileName)) {
+			mfp.wrap.addClass('mfp-is-minder');
 		} else {
-			mfp.wrap.removeClass('mfp-isKm');
+			mfp.wrap.removeClass('mfp-is-minder');
 		}
 	},
 
