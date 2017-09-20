@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2017-08-09
+/*! Magnific Popup - v1.1.0 - 2017-09-20
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
@@ -1115,9 +1115,9 @@ $.magnificPopup.registerModule(INLINE_NS, {
 					'<div class="mfp-header-wrapper">' +
 						'<div class="mfp-file-name"></div>'+
 						'<div class = "mfp-extra-center">' +
-               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
-               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
-               '<button class="mfp-edit-minder"><i class="icon-create"></i>编辑</button>'+
+               '<a class="mfp-download" target="_blank" download=""><i class="icon2-download"></i>下载</a>'+
+               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon2-reload"></i>更新</label>' +
+               '<button class="mfp-edit-minder"><i class="icon2-edit-tab"></i>编辑</button>'+
            	'</div>' +
 						'<div class="mfp-close"></div>'+
 					'</div>'+
@@ -1291,14 +1291,14 @@ $.magnificPopup.registerModule('image', {
           '<div class="mfp-header-wrapper">' +
                '<div class="mfp-file-name"></div>'+
                '<div class = "mfp-extra-center">' +
-	               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
-	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
+	               '<a class="mfp-download" target="_blank" download=""><i class="icon2-download"></i>下载</a>'+
+	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon2-reload"></i>更新</label>' +
                '</div>' +
                '<div class = "mfp-figure-control">' +
-	               '<button class = "mfp-figure-control-zoom-in" title="放大"><i class = "icon-ic_zoom_in_black_24px"></i></button>' +
+	               '<button class = "mfp-figure-control-zoom-in" title="放大"><i class = "icon2-enlarge"></i></button>' +
 	               '<span class = "mfp-ratio-view">100%</span>' +
-	               '<button class = "mfp-figure-control-zoom-out" title = "缩小"><i class = "icon-ic_zoom_out_black_24px"></i></button>' +
-	               '<button class = "mfp-figure-control-rotate" title = "旋转"><i class = "icon-rotate"></i></button>' +
+	               '<button class = "mfp-figure-control-zoom-out" title = "缩小"><i class = "icon2-zoom"></i></button>' +
+	               '<button class = "mfp-figure-control-rotate" title = "旋转"><i class = "icon2-rotate"></i></button>' +
                '</div>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
@@ -1757,9 +1757,9 @@ $.magnificPopup.registerModule(IFRAME_NS, {
             '<div class="mfp-header-wrapper">' +
               '<div class="mfp-file-name"></div>'+
 							'<div class = "mfp-extra-center">' +
-	               '<a class="mfp-download" target="_blank" download=""><i class="icon-get_app"></i>下载</a>'+
-	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon-sync"></i>更新</label>' +
-	               '<button class="mfp-edit-minder"><i class="icon-create"></i>编辑</button>'+
+	               '<a class="mfp-download" target="_blank" download=""><i class="icon2-download"></i>下载</a>'+
+	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon2-reload"></i>更新</label>' +
+	               '<button class="mfp-edit-minder"><i class="icon2-edit-tab"></i>编辑</button>'+
 	           	'</div>' +
                '<div class="mfp-close"></div>'+
             '</div>' +
