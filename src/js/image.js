@@ -26,10 +26,9 @@ $.magnificPopup.registerModule('image', {
 	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon2-reload"></i>更新</label>' +
                '</div>' +
                '<div class = "mfp-figure-control">' +
-	               '<button class = "mfp-figure-control-zoom-in" title="放大"><i class = "icon2-enlarge"></i></button>' +
-	               '<span class = "mfp-ratio-view">100%</span>' +
-	               '<button class = "mfp-figure-control-zoom-out" title = "缩小"><i class = "icon2-zoom"></i></button>' +
-	               '<button class = "mfp-figure-control-rotate" title = "旋转"><i class = "icon2-rotate"></i></button>' +
+	               '<button class = "mfp-figure-control-zoom-in" title="放大"><i class = "icon2-enlarge"></i><span class="mfp-radio-text">放大</span></button>' +
+	               '<button class = "mfp-figure-control-zoom-out" title = "缩小"><i class = "icon2-zoom"></i><span class="mfp-radio-text">缩小</span></button>' +
+	               '<button class = "mfp-figure-control-rotate" title = "旋转"><i class = "icon2-rotate"></i><span class="mfp-radio-text">旋转</span></button>' +
                '</div>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
@@ -45,7 +44,6 @@ $.magnificPopup.registerModule('image', {
 				'</div>',
 		cursor: 'mfp-zoom-out-cur',
 		titleSrc: 'title',
-		verticalFit: true,
 		tError: '<a href="%url%">The image</a> could not be loaded.'
 	},
 

@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2017-09-20
+/*! Magnific Popup - v1.1.0 - 2017-09-22
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2017 Dmitry Semenov; */
 ;(function (factory) { 
@@ -422,8 +422,26 @@ MagnificPopup.prototype = {
 			  mfp.panZoom.zoomOut();
 			});
 			wrap.find('.mfp-figure-control-rotate').click(function () {
+				var translates = img.css('transform');
+				if (translates !== 'none') { // 说明不是原始刚打开的状态，做了旋转、缩放、平移中的一种操作
+					var arr = translates.substring(7).split(','); // 获取到的是["1", " 0", " 0", " 1", " 100"," 0)"]形式
+					var newArr = [];
+					arr.forEach(function (v) {
+						newArr.push(parseFloat(v));
+					})
+					var transX = newArr[4];
+					var transY = newArr[5];
+					if (transX !== 0 && transY !== 0) { // 说明不在中心位置，产品要求先移动到中心位置再做旋转
+						// 移动到中心
+						transX = 0;
+						transY = 0;
+						img.css({
+							transform: 'matrix(' + newArr[0] + ',' + newArr[1] + ',' + newArr[2] + ',' + newArr[3] + ',' + transX + ',' + transY + ')'
+						})
+					}
+				}
 				if (rotate === 4) {
-					rotate = 0;
+					rotate = 1;
 				} else {
 					rotate++;
 				}
@@ -1295,10 +1313,9 @@ $.magnificPopup.registerModule('image', {
 	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon2-reload"></i>更新</label>' +
                '</div>' +
                '<div class = "mfp-figure-control">' +
-	               '<button class = "mfp-figure-control-zoom-in" title="放大"><i class = "icon2-enlarge"></i></button>' +
-	               '<span class = "mfp-ratio-view">100%</span>' +
-	               '<button class = "mfp-figure-control-zoom-out" title = "缩小"><i class = "icon2-zoom"></i></button>' +
-	               '<button class = "mfp-figure-control-rotate" title = "旋转"><i class = "icon2-rotate"></i></button>' +
+	               '<button class = "mfp-figure-control-zoom-in" title="放大"><i class = "icon2-enlarge"></i><span class="mfp-radio-text">放大</span></button>' +
+	               '<button class = "mfp-figure-control-zoom-out" title = "缩小"><i class = "icon2-zoom"></i><span class="mfp-radio-text">缩小</span></button>' +
+	               '<button class = "mfp-figure-control-rotate" title = "旋转"><i class = "icon2-rotate"></i><span class="mfp-radio-text">旋转</span></button>' +
                '</div>' +
                '<div class="mfp-close"></div>'+
            '</div>' +
@@ -1314,7 +1331,6 @@ $.magnificPopup.registerModule('image', {
 				'</div>',
 		cursor: 'mfp-zoom-out-cur',
 		titleSrc: 'title',
-		verticalFit: true,
 		tError: '<a href="%url%">The image</a> could not be loaded.'
 	},
 

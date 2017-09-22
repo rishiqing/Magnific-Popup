@@ -405,8 +405,26 @@ MagnificPopup.prototype = {
 			  mfp.panZoom.zoomOut();
 			});
 			wrap.find('.mfp-figure-control-rotate').click(function () {
+				var translates = img.css('transform');
+				if (translates !== 'none') { // 说明不是原始刚打开的状态，做了旋转、缩放、平移中的一种操作
+					var arr = translates.substring(7).split(','); // 获取到的是["1", " 0", " 0", " 1", " 100"," 0)"]形式
+					var newArr = [];
+					arr.forEach(function (v) {
+						newArr.push(parseFloat(v));
+					})
+					var transX = newArr[4];
+					var transY = newArr[5];
+					if (transX !== 0 && transY !== 0) { // 说明不在中心位置，产品要求先移动到中心位置再做旋转
+						// 移动到中心
+						transX = 0;
+						transY = 0;
+						img.css({
+							transform: 'matrix(' + newArr[0] + ',' + newArr[1] + ',' + newArr[2] + ',' + newArr[3] + ',' + transX + ',' + transY + ')'
+						})
+					}
+				}
 				if (rotate === 4) {
-					rotate = 0;
+					rotate = 1;
 				} else {
 					rotate++;
 				}
