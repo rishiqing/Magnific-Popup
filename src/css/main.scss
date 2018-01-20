@@ -692,7 +692,7 @@ button.mfp-close {
   width: 100%!important;
   left: 0!important;
 }
-.mfp-edit-minder {
+.mfp-edit-minder, .mfp-edit-office {
   display: none;
 }
 .mfp-is-minder {
@@ -701,7 +701,11 @@ button.mfp-close {
     display: inline;
   }
 }
-// .mfp-isPPT {
+.mfp-is-office {
+  .mfp-edit-office {
+    display: inline;
+  }
+}
 .mfp-iframe-holder {
   .mfp-arrow {
     display: none;

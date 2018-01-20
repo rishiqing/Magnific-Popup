@@ -17,6 +17,7 @@ var CLOSE_EVENT = 'Close',
 	CHANGE_EVENT = 'Change',
 	UPDATE_FILE_EVENT = 'UpdateFile',
 	EDIT_MINDER = 'EditMinder',
+	EDIT_OFFICE = 'EditOffice',
 	NS = 'mfp',
 	EVENT_NS = '.' + NS,
 	READY_CLASS = 'mfp-ready',
@@ -453,11 +454,15 @@ MagnificPopup.prototype = {
 			mfp.wrap.find('.mfp-edit-minder').click(function () {
 				_mfpTrigger(EDIT_MINDER, [mfp.currItem, mfp]);
 			});
+			mfp.wrap.find('.mfp-edit-office').click(function () {
+				_mfpTrigger(EDIT_OFFICE, [mfp.currItem, mfp]);
+			});
 		});
 	},
 	unBindUploadEvent: function () {
 		mfp.wrap.find('#mfp-update-file').off();
 		mfp.wrap.find('.mfp-edit-minder').off();
+		mfp.wrap.find('.mfp-edit-office').off();
 	},
 
 
@@ -633,10 +638,10 @@ MagnificPopup.prototype = {
 		mfp.wrap.find('figure').css({
 			transform: 'rotate(0deg)'
 		});
-		if (/\.pptx?$/.test(item.fileName)) {
-			mfp.wrap.addClass('mfp-isPPT');
+		if (/\.(pptx?$|docx?$|xlsx?$)/.test(item.fileName)) {
+			mfp.wrap.addClass('mfp-is-office');
 		} else {
-			mfp.wrap.removeClass('mfp-isPPT');
+			mfp.wrap.removeClass('mfp-is-office');
 		}
 		if (/\.(km|xmind|mm)$/.test(item.fileName)) {
 			mfp.wrap.addClass('mfp-is-minder');

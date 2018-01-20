@@ -451,10 +451,13 @@ button.mfp-close {
   width: 100% !important;
   left: 0 !important; }
 
-.mfp-edit-minder {
+.mfp-edit-minder, .mfp-edit-office {
   display: none; }
 
 .mfp-is-minder .mfp-edit-minder {
+  display: inline; }
+
+.mfp-is-office .mfp-edit-office {
   display: inline; }
 
 .mfp-iframe-holder .mfp-arrow {

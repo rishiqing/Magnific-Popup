@@ -1,6 +1,6 @@
-/*! Magnific Popup - v1.1.0 - 2017-09-22
+/*! Magnific Popup - v1.1.0 - 2018-01-03
 * http://dimsemenov.com/plugins/magnific-popup/
-* Copyright (c) 2017 Dmitry Semenov; */
+* Copyright (c) 2018 Dmitry Semenov; */
 ;(function (factory) { 
 if (typeof define === 'function' && define.amd) { 
  // AMD. Register as an anonymous module. 
@@ -34,6 +34,7 @@ var CLOSE_EVENT = 'Close',
 	CHANGE_EVENT = 'Change',
 	UPDATE_FILE_EVENT = 'UpdateFile',
 	EDIT_MINDER = 'EditMinder',
+	EDIT_OFFICE = 'EditOffice',
 	NS = 'mfp',
 	EVENT_NS = '.' + NS,
 	READY_CLASS = 'mfp-ready',
@@ -470,11 +471,15 @@ MagnificPopup.prototype = {
 			mfp.wrap.find('.mfp-edit-minder').click(function () {
 				_mfpTrigger(EDIT_MINDER, [mfp.currItem, mfp]);
 			});
+			mfp.wrap.find('.mfp-edit-office').click(function () {
+				_mfpTrigger(EDIT_OFFICE, [mfp.currItem, mfp]);
+			});
 		});
 	},
 	unBindUploadEvent: function () {
 		mfp.wrap.find('#mfp-update-file').off();
 		mfp.wrap.find('.mfp-edit-minder').off();
+		mfp.wrap.find('.mfp-edit-office').off();
 	},
 
 
@@ -650,10 +655,10 @@ MagnificPopup.prototype = {
 		mfp.wrap.find('figure').css({
 			transform: 'rotate(0deg)'
 		});
-		if (/\.pptx?$/.test(item.fileName)) {
-			mfp.wrap.addClass('mfp-isPPT');
+		if (/\.(pptx?$|docx?$|xlsx?$)/.test(item.fileName)) {
+			mfp.wrap.addClass('mfp-is-office');
 		} else {
-			mfp.wrap.removeClass('mfp-isPPT');
+			mfp.wrap.removeClass('mfp-is-office');
 		}
 		if (/\.(km|xmind|mm)$/.test(item.fileName)) {
 			mfp.wrap.addClass('mfp-is-minder');
@@ -1136,6 +1141,7 @@ $.magnificPopup.registerModule(INLINE_NS, {
                '<a class="mfp-download" target="_blank" download=""><i class="icon2-download"></i>下载</a>'+
                '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon2-reload"></i>更新</label>' +
                '<button class="mfp-edit-minder"><i class="icon2-edit-tab"></i>编辑</button>'+
+               '<button class="mfp-edit-office"><i class="icon2-edit-tab"></i>编辑</button>'+
            	'</div>' +
 						'<div class="mfp-close"></div>'+
 					'</div>'+
@@ -1776,6 +1782,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 	               '<a class="mfp-download" target="_blank" download=""><i class="icon2-download"></i>下载</a>'+
 	               '<label class = "mfp-update" for = "mfp-update-file"><input id = "mfp-update-file" type = "file" hide /><i class = "icon2-reload"></i>更新</label>' +
 	               '<button class="mfp-edit-minder"><i class="icon2-edit-tab"></i>编辑</button>'+
+	               '<button class="mfp-edit-office"><i class="icon2-edit-tab"></i>编辑</button>'+
 	           	'</div>' +
                '<div class="mfp-close"></div>'+
             '</div>' +
