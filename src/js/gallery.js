@@ -18,7 +18,7 @@ $.magnificPopup.registerModule('gallery', {
 
 	options: {
 		enabled: false,
-		arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"></button>',
+		arrowMarkup: '<button title="%title%" type="button" class="mfp-arrow mfp-arrow-%dir%"><i class="icon2-arrow-%dir%"></i></button>',
 		preload: [0,2],
 		navigateByImgClick: true,
 		arrows: true,
