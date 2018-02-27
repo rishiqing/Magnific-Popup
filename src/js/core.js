@@ -18,6 +18,7 @@ var CLOSE_EVENT = 'Close',
 	UPDATE_FILE_EVENT = 'UpdateFile',
 	EDIT_MINDER = 'EditMinder',
 	EDIT_OFFICE = 'EditOffice',
+	CLOSE_MFP = 'CloseMfp',
 	NS = 'mfp',
 	EVENT_NS = '.' + NS,
 	READY_CLASS = 'mfp-ready',
@@ -459,10 +460,20 @@ MagnificPopup.prototype = {
 			});
 		});
 	},
+	bindCloseEvent: function () {
+		setTimeout(function () {
+			mfp.wrap.find('.mfp-close').click(function () {
+				_mfpTrigger(CLOSE_MFP, [mfp.currItem, mfp]);
+			});
+		});
+	},
 	unBindUploadEvent: function () {
 		mfp.wrap.find('#mfp-update-file').off();
 		mfp.wrap.find('.mfp-edit-minder').off();
 		mfp.wrap.find('.mfp-edit-office').off();
+	},
+	unBindCloseEvent: function () {
+		mfp.wrap.find('.mfp-close').off();
 	},
 
 
@@ -506,6 +517,7 @@ MagnificPopup.prototype = {
 
 		this.unBindScaleEvent();
 		this.unBindUploadEvent();
+		this.unBindCloseEvent();
 
 		mfp.bgOverlay.detach();
 		mfp.wrap.detach();
@@ -632,6 +644,7 @@ MagnificPopup.prototype = {
 		mfp.container.prepend(mfp.contentContainer);
 
 		this.bindUploadEvent();
+		this.bindCloseEvent();
 
 		_mfpTrigger('AfterChange', mfp, item);
 
