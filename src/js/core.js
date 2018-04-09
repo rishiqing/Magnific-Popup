@@ -601,7 +601,7 @@ MagnificPopup.prototype = {
 
 		mfp.currItem = item;
 
-		if(!mfp.currTemplate[type]) {
+		if(mfp.currTemplate && !mfp.currTemplate[type]) {
 			var markup = mfp.st[type] ? mfp.st[type].markup : false;
 
 			// allows to modify markup
