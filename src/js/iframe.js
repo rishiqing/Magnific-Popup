@@ -82,7 +82,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 			var embedSrc = item.src;
 			var iframeSt = mfp.st.iframe;
 			$('.mfp-file-name', template).html(item.fileName);
-			$('.mfp-download', template).attr('href', item.downloadUrl && item.downloadUrl.split('furl=')[1]);
+			$('.mfp-download', template).attr('href', item.downloadUrl);
 			$.each(iframeSt.patterns, function() {
 				if(embedSrc.indexOf( this.index ) > -1) {
 					if(this.id) {
