@@ -1,4 +1,4 @@
-/*! Magnific Popup - v1.1.0 - 2018-02-26
+/*! Magnific Popup - v1.1.0 - 2018-05-03
 * http://dimsemenov.com/plugins/magnific-popup/
 * Copyright (c) 2018 Dmitry Semenov; */
 ;(function (factory) { 
@@ -630,7 +630,7 @@ MagnificPopup.prototype = {
 
 		mfp.currItem = item;
 
-		if(!mfp.currTemplate[type]) {
+		if(mfp.currTemplate && !mfp.currTemplate[type]) {
 			var markup = mfp.st[type] ? mfp.st[type].markup : false;
 
 			// allows to modify markup
@@ -762,7 +762,7 @@ MagnificPopup.prototype = {
 		    fileName = fileName.slice(fileName.lastIndexOf('/') + 1);
 		    fileName = decodeURIComponent(fileName);
 		    item.fileName = item.fileName || fileName;
-		    item.downloadUrl = src;
+		    item.downloadUrl = item.el.attr('data-download-path') || decodeURIComponent(src);
 		}
 
 		mfp.items[index] = item;
@@ -1848,7 +1848,7 @@ $.magnificPopup.registerModule(IFRAME_NS, {
 			var embedSrc = item.src;
 			var iframeSt = mfp.st.iframe;
 			$('.mfp-file-name', template).html(item.fileName);
-			$('.mfp-download', template).attr('href', item.downloadUrl && item.downloadUrl.split('furl=')[1]);
+			$('.mfp-download', template).attr('href', item.downloadUrl);
 			$.each(iframeSt.patterns, function() {
 				if(embedSrc.indexOf( this.index ) > -1) {
 					if(this.id) {
