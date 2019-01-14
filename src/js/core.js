@@ -390,6 +390,20 @@ MagnificPopup.prototype = {
 
 		mfp.isOpen = true;
 		mfp.updateSize(windowHeight);
+		// 如果没有强制设置可查看和可编辑，那就走传过来的权限canUpdate,canEdit
+    if (!mfp.wrap.hasClass('only-has-view-auth') && !mfp.wrap.hasClass('has-ope-auth')) {
+			// 权限处理，可能没有更新和编辑权限
+			if (!data.canUpdate) {
+	      mfp.wrap.addClass('has-no-update-auth');
+	    } else {
+	      mfp.wrap.removeClass('has-no-update-auth');
+	    }
+	    if (!data.canEdit) {
+	      mfp.wrap.addClass('has-no-edit-auth');
+	    } else {
+	      mfp.wrap.removeClass('has-no-edit-auth');
+	    }
+    }
 		_mfpTrigger(OPEN_EVENT, mfp);
 
 		this.bindScaleEvent();
@@ -745,7 +759,7 @@ MagnificPopup.prototype = {
 		    fileName = fileName.slice(fileName.lastIndexOf('/') + 1);
 		    fileName = decodeURIComponent(fileName);
 		    item.fileName = item.fileName || fileName;
-		    item.downloadUrl = item.el.attr('data-download-path') || decodeURIComponent(src);
+		    item.downloadUrl = (item.el && item.el.attr('data-download-path')) || src;
 		}
 
 		mfp.items[index] = item;
