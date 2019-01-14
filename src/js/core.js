@@ -745,7 +745,7 @@ MagnificPopup.prototype = {
 		    fileName = fileName.slice(fileName.lastIndexOf('/') + 1);
 		    fileName = decodeURIComponent(fileName);
 		    item.fileName = item.fileName || fileName;
-		    item.downloadUrl = src;
+		    item.downloadUrl = item.el.attr('data-download-path') || decodeURIComponent(src);
 		}
 
 		mfp.items[index] = item;
